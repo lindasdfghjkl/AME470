@@ -2,9 +2,17 @@
 <html>
 <head>
   <style>
+    p.sansserif {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    a:link {
+      color:red;
+    }
+
     button.accordion {
-        background-color: #eee;
-        color: #444;
+        background-color: #000000;
+        color: #FFFFFF;
         cursor: pointer;
         padding: 18px;
         width: 100%;
@@ -16,7 +24,7 @@
     }
 
     button.accordion.active, button.accordion:hover {
-        background-color: #ddd;
+        background-color: #900C3F;
     }
 
     button.accordion:after {
@@ -41,14 +49,22 @@
   </style>
 </head>
 
-<body>
+<body bgcolor=f8f1f5>
 
-  <h1>Linda Nguyen</h2>
-  <h2><a href="https://goo.gl/maps/mfiSU94nBMu" target="_blank">Address</a></h2>
-  <h3>email, phone number<h3>
+  <h1 style="color:#900C3F; font-family:Arial;">Linda Nguyen</h1>
 
-  <h2>Objective</h2>
-  <p>In this example we have added a "plus" sign to each button. When the user clicks on the button, the "plus" sign is replaced with a "minus" sign.</p>
+  <h4 style="color:#757575; font-family:Arial;">
+    <a href="https://goo.gl/maps/8VQDCR7jzP42" target="_blank">500 N Gila Springs Blvd, Chandler, AZ 85226</a>
+    <br>
+    <a href="mailto:linda.d.nguyen@asu.edu">linda.d.nguyen@asu.edu</a> 
+    <br>
+    <a href="tel:14807359971">(480) 735-9971</a>
+  <h4>
+
+  <button class="accordion">Objective</button>
+  <div class="panel">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
 
   <button class="accordion">Education</button>
   <div class="panel">

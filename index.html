@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    a {
+    text-decoration:none;
+    }
+    a:link, a:visited {
+      color: #aaa;
+    }
+    a:hover {
+      color: #E31061;
+    }
+
+    button.accordion {
+        background-color: #000000;
+        color: gray;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%; 
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 18px;
+        transition: 1.4s;
+    }
+
+    button.accordion.active, button.accordion:hover {
+        background-color: #E31061;
+        color:#FFFFFF;
+    }
+
+    button.accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right; 
+        margin-left: 5px;
+    }
+
+    button.accordion.active:after {
+        content: "\2212";
+        color: #FFFFFF;
+    }
+
+    div.panel {
+        font-family: Arial;
+        font-size: 15px;
+        font-weight: lighter;
+        padding: 0 40px;
+        background-color: #F7D2E1;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+  </style>
+</head>
+
+<body bgcolor=#16282E>
+
+  <h1 style="color: #E31061; font-family: Arial; font-weight: bolder; text-align: center;">Linda Nguyen</h1>
+
+  <h4 style="color: #757575; font-family: Arial; font-weight: lighter; text-align: center">
+    <a href="https://goo.gl/maps/8VQDCR7jzP42" target="_blank">500 N Gila Springs Blvd, Chandler, AZ 85226</a>
+    <br>
+    <a href="mailto:linda.d.nguyen@asu.edu">linda.d.nguyen@asu.edu</a>
+    <br>
+    <a href="tel:14807359971">(480) 735-9971</a>
+  <h4>
+  
+  <button class="accordion">Objective</button>
+  <div class="panel">
+    <p>Dedicated undergraduate student seeking employment</p>
+  </div>
+
+  <button class="accordion">Education</button>
+  <div class="panel">  
+    <p>
+    <ul>
+      <li><b>Mountain Pointe High School (2011-2015) | Phoenix, AZ</b></li>
+        <ul>
+        <li>High School Diploma</li>
+        <li> Graduation Date: May 2015</li>
+        <li> GPA: 3.820</li>
+        </ul>
+        <br>
+      <li><b>Arizona State University (2015—) | Tempe, AZ</b></li>
+        <ul>
+        <li>Major: Digital Culture (Art), Bachelor of Arts (BA)</li>
+        <li>Minor: Business</li>
+        <li>Estimated Graduation Date: May 2019</li>
+        <li>Current GPA: 4.00</li>
+        </ul>
+    </ul>
+    </p>
+  </div>
+
+  <button class="accordion">Skills</button>
+  <div class="panel">
+    <p>
+    <ul>
+      <li>Proficient in Adobe Photoshop, InDesign, and Illustrator</li>
+      <li>Basic computer programming and web design</li>
+      <li>Experience with video-editing software</li>
+    </ul>
+    </p>
+  </div>
+
+  <button class="accordion">Experience</button>
+  <div class="panel">
+    <p>
+    <ul>
+      <li><b>Hayden's Ferry Review</b></li>
+        <ul>
+        <li>Position Title: Graphic Design Intern</li>
+        <li>Date: August 2016 - December 2016</li>
+        <li>Responsbilites: inputting content for magazine layout, designing cover art, selecting artwork, communicating with writers and artists</li>
+    </ul>
+    </p>
+  </div>
+
+  <button class="accordion">Awards</button>
+  <div class="panel">
+    <p>
+    <ul>
+      <li><b>Arizona State University - Dean's List</b></li>
+        <ul>
+        <li>Fall 2015</li>
+        <li>Spring 2016</li>
+        <li>Fall 2016</li>
+    </ul>
+    </p>
+  </div>
+
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].onclick = function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight){
+      	  panel.style.maxHeight = null;
+        } else {
+      	  panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+
+<head>
+	<script src="asyncReq.js"></script>
+	
+	<script>
+		function calc() {
+			var expression = document.getElementById("exp").value;
+			loadFile("./calc?exp=" + encodeURIComponent(expression), function(data){alert(data)});
+		};
+	</script>
+</head>
+
+<body>
+	<textarea id="exp"></textarea>
+	<br>
+	<button onclick="calc()"> Calculate </button>
+</body>
+
+</html>

@@ -7,16 +7,10 @@ var hostname = process.env.HOSTNAME || 'localhost';
 var port = 8080;
 
 app.get("/", function (req, res) {
-	res.redirect("/index.html");
+      res.redirect("/index.html");
 });
 
-app.get("/calc", function (req, res) {
- 	var expression = decodeURIComponent(req.query.exp);
-	var answer = eval(expression);
-	res.send(answer.toString());
-});
-
-app.use(methodOverride()); 
+app.use(methodOverride());
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
 app.use(errorHandler());

@@ -216,6 +216,12 @@
 
 		function formatList(list){
 			var markup = "";
+
+			if (list.length == 0){
+				markup = "<p style='text-align: center'> No images added </p>";
+				document.getElementById("listWrapper").innerHTML = markup;
+			}
+
 			for (var i = 0; i < list.length; i++){
 				var item = list[i];
 				markup += "<img style='width: 60px' src='" + list[i].imageURL + "'>";

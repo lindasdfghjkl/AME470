@@ -374,10 +374,12 @@
 		}
 
 		function cancelDarkroom() {
-			document.getElementById("DRFrame").src = "";
-			document.getElementById("DRWrapper").style.display = "none";
-			$("#DRFrame, #cancel, #save").hide();
-
+			var accept = confirm("Are you sure?");
+			if (accept == true) {
+				document.getElementById("DRFrame").src = "";
+				document.getElementById("DRWrapper").style.display = "none";
+				$("#DRFrame, #cancel, #save").hide();
+			}
 		}
 	</script>
 </head>

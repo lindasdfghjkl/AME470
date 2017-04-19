@@ -165,16 +165,15 @@
 			margin-top: 20px;
 			float: right;
 			padding: 10px 10px;
-
 		}
 
 		#closeEdit{
 			position: absolute;
-			top: 15px;
-			right: 100%;
-			left: 70%;
-			padding: 10px 10px;
-			width: 60px;
+			top: 10px;
+			left: calc(100% - 80px);
+			font-size: 150%;
+			color: black;
+			border: none;
 		}
 
 		#listWrapper img.active{
@@ -221,6 +220,15 @@
 		    cursor: pointer;
 		    opacity: 0;
 		    filter: alpha(opacity=0);
+		}
+
+		#descriptionWrapper button, #DRButtons button, #editWrapper button {
+			border: none;
+			padding: 10px;
+		}
+
+		#descriptionWrapper button:hover, #DRButtons button:hover, #editWrapper button:hover {
+			background: #9EE7FF;
 		}
 	</style>
 
@@ -352,17 +360,18 @@
 			descriptionMU += "<p>" + imageData[0].desc + "</p>";
 			document.getElementById('descriptionWrapper').innerHTML = descriptionMU;
 
+
 			var editMU = "";
 			editMU += "<h2 style='margin-left: 20px'> Edit Image Details </h2>";
-			editMU += "<button id='closeEdit' onclick='hideEditWrapper()'> Close Editor </button>";
+			editMU += "<button id='closeEdit' onclick='hideEditWrapper()'> X </button>";
 
-			editMU += "<h4> URL </h4><input id='imageURL' placeholder='New URL'><br>";
-			editMU += "<button onclick='editURL(" + imageData[0].id + "), updateURL()'> Enter new URL </button>";
+			//editMU += "<h4> URL </h4><input id='imageURL' placeholder='New URL'><br>";
+			//editMU += "<button onclick='editURL(" + imageData[0].id + "), updateURL()'> Enter new URL </button>";
 
 			editMU += "<h4> Title </h4><input id='title' placeholder='New Title'><br>";
 			editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Enter new title </button>";
 
-			editMU += "<h4> Description </h4><textarea id='desc'> </textarea>";
+			editMU += "<h4> Description </h4><textarea id='desc' style='width: 80%; height: 20%'> </textarea>";
 			editMU += "<br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Enter new description </button>";
 			document.getElementById('editWrapper').innerHTML = editMU;
 		}

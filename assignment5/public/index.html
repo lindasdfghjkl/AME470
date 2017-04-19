@@ -210,7 +210,49 @@
 	<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
 
 	<script>
+		var touch = null;
+		var mouse = null;
+		var ios = null;
+		var iphone = null;
+		var android = null;
+
+		function parseUA(){
+			var ua = navigator.userAgent.toLowerCase();
+			if(ua.indexOf("iphone") >= 0){
+				touch = true;
+				mouse = false;
+				ios = true;
+				iphone = true;
+				android = false;
+			} else if (ua.indexOf("ipad") >= 0){
+				touch = true;
+				mouse = false;
+				ios = true;
+				iphone = false;
+				android = false;
+			} else if (ua.indexOf("android") >= 0){
+				touch = true;
+				mouse = false;
+				ios = false;
+				iphone = false;
+				android = true;
+			} else {
+				touch = false;
+				mouse = true;
+				ios = false;
+				iphone = false;
+				android = false;
+			}
+			
+			if (mouse){
+				$("#body").addClass("mouse");
+			} else{
+				$("#body").addClass("touch");		
+			}
+		}
+
 		function getList(){
+			parseUA();
 			$('#editWrapper').hide();
 			var url = "./getList";
 			loadFile(url, function(d){
@@ -366,11 +408,6 @@
 			console.log(url);
 			document.getElementById("DRFrame").src = "./demo/index.html#" + url;
 			document.getElementById("DRWrapper").style.display = "block";
-		}
-
-		function editImage(){
-			var url = document.getElementById("theImage").style.backgroundImage.replace('url("', "").replace('")', '');
-			window.open("./demo/index.html#" + url);
 		}
 
 		function cancelDarkroom() {

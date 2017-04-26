@@ -451,6 +451,7 @@
 		var fileUploaded = function()
 		{
 		   var file = $('#theFileUploader').get(0);
+		   console.log(file, typeof file);
 		   var fileObj = $('#theFileUploader').get(0).files[0]
 		   var filename = fileObj.name;
 		   var ext = filename.split(".");

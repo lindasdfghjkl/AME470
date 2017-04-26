@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DarkroomJS</title>
+  <link rel="stylesheet" href="./build/darkroom.css">
+  <link rel="stylesheet" href="./css/page.css">
+
+  <style>
+  body{
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8); 
+  }
+
+html::-webkit-scrollbar {
+    width: 50px;  /* remove scrollbar space */
+    background: rgba(0, 0, 0, 0);  /* optional: just make scrollbar invisible */
+}
+
+  #filterWrapper {
+    color: white;
+    position: fixed;
+    left: 75%;
+    top: 5%;
+  }
+  </style>
+
+</head>
+
+<body>
+<!--
+  <header id="header">
+  </header>
+  -->
+  <div id="content">
+    <div class="container">
+      <section class="copy">
+        <div class="figure-wrapper">
+          <figure class="image-container target">
+            <img crossorigin='anonymous' src="" alt="" id="target">
+
+            <figcaption id='caption' class="image-meta">
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <div id="filterWrapper">   
+      <br>Brightness<br>
+        <input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()">
+      <br><br>Contrast<br>
+        <input type="range" id="contrast" min="0" max="200" value="100" onchange="updateFilter()">
+      <br><br>Saturation<br>
+        <input type="range" id="saturate" min="0" max="200" value="100" onchange="updateFilter()">
+      <br><br>Hue<br>
+        <input type="range" id="hue" min="0" max="360" value="0" onchange="updateFilter()">
+      <br><br>Invert<br>
+        <input type="range" id="invert" min="0" max="100" value="0" onchange="updateFilter()">
+      <br><br>Grayscale<br>
+        <input type="range" id="grayscale" min="0" max="100" value="0" onchange="updateFilter()">
+      <br><br>Sepia<br>
+        <input type="range" id="sepia" min="0" max="100" value="0" onchange="updateFilter()">
+      <br><br>Blur<br>
+        <input type="range" id="blur" min="0" max="100" value="0" onchange="updateFilter()">
+    </div>
+
+  </div>
+
+  <script src="./vendor/fabric.js"></script>
+  <script src="./build/darkroom.js"></script>
+
+  <script>
+
+    // get image to be edited from hash of the URL
+    document.getElementById("target").src = window.location.hash.replace("#","");
+
+
+    var dkrm;
+    setTimeout("initDR()", 5000);
+    function initDR(){
+        dkrm = new Darkroom('#target', {
+        // Size options
+        minWidth: 200,
+        minHeight: 200,
+        maxWidth: 600,
+        maxHeight: 600,
+        ratio: 4/3,
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+
+        // Plugins options
+        plugins: {
+          save: false,
+          crop: {
+            quickCropKey: 67, //key "c"
+            //minHeight: 50,
+            //minWidth: 50,
+            //ratio: 4/3
+          }
+        },
+
+        // Post initialize script
+        initialize: function() {
+          //var cropPlugin = this.plugins['crop'];
+          //cropPlugin.selectZone(170, 25, 300, 300);
+          //cropPlugin.requireFocus();
+
+          this.addEventListener('core:transformation', function() {
+            sessionStorage.setItem("editedImage", dkrm.canvas.toDataURL());
+            sessionStorage.setItem("isEdited", "true");
+          });
+
+          //filters
+          /*var orig = dkrm.canvas.toDataURL("image/png");
+          var ctx = dkrm.canvas.getContext("2D");
+          ctx.filter = "saturate(" + document.getElementById("saturate").value + "%)";
+
+          var image = new Image();
+          image.onload = function() {
+            ctx.drawImage(image, 0, 0);
+          };
+          image.src = orig;*/
+        }
+      });
+    }
+
+    function updateFilter() {
+        var orig = dkrm.canvas.toDataURL("image/png");
+        var ctx = dkrm.canvas.getContext("2D");
+        ctx.filter = "saturate(" + document.getElementById("saturate").value + "%)" +
+            " brightness(" + document.getElementById("brightness").value + "%)" + 
+            " contrast(" + document.getElementById("contrast").value + "%)" +
+            " invert(" + document.getElementById("invert").value + "%)" +
+            " hue-rotate(" + document.getElementById("hue").value + "deg)" +
+            " sepia(" + document.getElementById("sepia").value + "%)" +
+            " grayscale(" + document.getElementById("grayscale").value + "%)" +
+            " blur(" + document.getElementById("blur").value + "px)";
+
+        var image = new Image();
+        image.onload = function() {
+          ctx.drawImage(image, 0, 0);
+        };
+        image.src = orig;
+    }
+
+    function reset() {
+        var orig = dkrm.canvas.toDataURL("image/png");
+        var ctx = dkrm.canvas.getContext("2D");
+        ctx.filter = "saturate(100%) brightness(100%) contrast(100%) invert(0%) hue-rotate(0deg) sepia(0%) grayscale(0%) blur(0px)";
+
+        var image = new Image();
+        image.onload = function() {
+          ctx.drawImage(image, 0, 0);
+        };
+        image.src = orig;
+    }
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-23657373-2', 'mattketmo.github.io');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

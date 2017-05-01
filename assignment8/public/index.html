@@ -508,6 +508,7 @@
 			$("#editDetails").addClass("clicked");
 			$("#filters").removeClass("clicked");
 		}
+		
 		function hideEditWrapper(){
 			$('#editWrapper').hide();
 			$("#editDetails").removeClass("clicked");
@@ -766,7 +767,6 @@
 
 <body onload="getList()" bgcolor="#78A0AD">
 	<!-- <button id='addButton' onchange='addNew()'> + </button> -->
-
 	<button class="fileUpload" id='addButton'>
 	    <span> + </span>
 	    <input type='file' id='theFileUploader' class='upload' onchange='fileUploaded()'>
@@ -788,30 +788,30 @@
     </div>
 
 	<div id='overlay'>
-	  <div id='spinner' class='fa fa-repeat aniSpin'>
-	  </div>
+		<div id='spinner' class='fa fa-repeat aniSpin'>
+		</div>
 	</div>
 
     <div id="filtersWrapper"> 
-	  <button onclick='cancelFilter()'> Cancel </button>
-	  <button style="float: right" onclick='saveFilter()'> Save </button>
+		<button onclick='cancelFilter()'> Cancel </button>
+		<button style="float: right" onclick='saveFilter()'> Save </button>
 
-      <br><br>Brightness <div style='float: right' id="brightnessVal"></div><br>
-        <input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()"> 
-      <br><br>Contrast <div style='float: right' id="contrastVal"></div><br>
-        <input type="range" id="contrast" min="0" max="200" value="100" onchange="updateFilter()">
-      <br><br>Saturation <div style='float: right' id="saturateVal"></div><br>
-        <input type="range" id="saturate" min="0" max="200" value="100" onchange="updateFilter()">
-      <br><br>Hue <div style='float: right' id="hueVal"></div><br>
-        <input type="range" id="hue" min="0" max="360" value="0" onchange="updateFilter()">
-      <br><br>Invert <div style='float: right' id="invertVal"></div><br>
-        <input type="range" id="invert" min="0" max="100" value="0" onchange="updateFilter()">
-      <br><br>Grayscale <div style='float: right' id="grayscaleVal"></div><br>
-        <input type="range" id="grayscale" min="0" max="100" value="0" onchange="updateFilter()">
-      <br><br>Sepia <div style='float: right' id="sepiaVal"></div><br>
-        <input type="range" id="sepia" min="0" max="100" value="0" onchange="updateFilter()">
-      <br><br>Blur <div style='float: right' id="blurVal"></div><br>
-        <input type="range" id="blur" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Brightness <div style='float: right' id="brightnessVal"></div><br>
+			<input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()"> 
+		<br><br>Contrast <div style='float: right' id="contrastVal"></div><br>
+			<input type="range" id="contrast" min="0" max="200" value="100" onchange="updateFilter()">
+		<br><br>Saturation <div style='float: right' id="saturateVal"></div><br>
+			<input type="range" id="saturate" min="0" max="200" value="100" onchange="updateFilter()">
+		<br><br>Hue <div style='float: right' id="hueVal"></div><br>
+			<input type="range" id="hue" min="0" max="360" value="0" onchange="updateFilter()">
+		<br><br>Invert <div style='float: right' id="invertVal"></div><br>
+			<input type="range" id="invert" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Grayscale <div style='float: right' id="grayscaleVal"></div><br>
+			<input type="range" id="grayscale" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Sepia <div style='float: right' id="sepiaVal"></div><br>
+			<input type="range" id="sepia" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Blur <div style='float: right' id="blurVal"></div><br>
+			<input type="range" id="blur" min="0" max="100" value="0" onchange="updateFilter()">
     </div>
 
 </body>

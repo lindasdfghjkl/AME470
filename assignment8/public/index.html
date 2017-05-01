@@ -499,11 +499,11 @@
 			//editMU += "<h4> URL </h4><input id='imageURL' placeholder='New URL'><br>";
 			//editMU += "<button onclick='editURL(" + imageData[0].id + "), updateURL()'> Enter new URL </button>";
 
-			editMU += "<h4> Title </h4><input id='title' placeholder='New Title'><br>";
-			editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Enter new title </button>";
+			editMU += "<h4> Title </h4><input id='title' val='" + imageData[0].title + "'><br>";
+			editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Save </button>";
 
-			editMU += "<h4> Description </h4><textarea id='desc' style='width: 80%; height: 20%'> </textarea>";
-			editMU += "<br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Enter new description </button>";
+			editMU += "<h4> Description </h4><textarea id='desc' style='width: 80%; height: 20%' value='" + imageData[0].desc + "'> </textarea>";
+			editMU += "<br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Save </button>";
 			document.getElementById('editWrapper').innerHTML = editMU;
 		}
 
@@ -512,6 +512,8 @@
 			$('#filtersWrapper').hide();
 			$("#editDetails").addClass("clicked");
 			$("#filters").removeClass("clicked");
+			document.getElementById("title").value = imageData[0].title;
+		    document.getElementById("desc").value = imageData[0].desc;
 		}
 
 		function hideEditWrapper(){
@@ -533,6 +535,7 @@
 			var newTitle = document.getElementById("title").value;
 		    $('#descriptionWrapper h1').text(newTitle);
 		    $('#listWrapper a.active').text(newTitle);
+		    imageData[0].title = document.getElementById("title").value;
 		}
 
 		function editDesc(index){
@@ -548,6 +551,7 @@
 		function updateDesc(){
 			var desc = document.getElementById("desc").value;
 		    $('#descriptionWrapper p').text(desc);
+		    imageData[0].desc = document.getElementById("desc").value;
 		}
 
 		function editURL(index){
@@ -736,24 +740,32 @@
 	          " grayscale(" + document.getElementById("grayscale").value + "%)" +
 	          " blur(" + document.getElementById("blur").value + "px)";
 
-	      $("#image").css("filter", filter);
+			$("#image").css("filter", filter);
 
-	      var brightness = document.getElementById("brightness").value + "%";
-	      	document.getElementById("brightnessVal").innerHTML = brightness;
-	      var saturate = document.getElementById("saturate").value + "%";
-	      	document.getElementById("saturateVal").innerHTML = saturate;
-	      var contrast = document.getElementById("contrast").value + "%";
-	      	document.getElementById("contrastVal").innerHTML = contrast;
-	      var blur = document.getElementById("blur").value + "px";
-	      	document.getElementById("blurVal").innerHTML = blur;	      
-	      var sepia = document.getElementById("sepia").value + "%";
-	      	document.getElementById("sepiaVal").innerHTML = sepia;	      
-	      var grayscale = document.getElementById("grayscale").value + "%";
-	      	document.getElementById("grayscaleVal").innerHTML = grayscale;
-	      var invert = document.getElementById("invert").value + "%";
-	      	document.getElementById("invertVal").innerHTML = invert;
-	      var hue = document.getElementById("hue").value + "°";
-	      	document.getElementById("hueVal").innerHTML = hue;
+			$(document).on('input', '#brightness', function() {
+			    $('#brightnessVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#saturate', function() {
+			    $('#saturateVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#invert', function() {
+			    $('#invertVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#contrast', function() {
+			    $('#contrastVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#hue', function() {
+			    $('#hueVal').html( $(this).val() + "°");
+			});
+			$(document).on('input', '#sepia', function() {
+			    $('#sepiaVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#grayscale', function() {
+			    $('#grayscaleVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#blur', function() {
+			    $('#blurVal').html( $(this).val() + "px");
+			});
 	    }
 
 	    function cancelFilter() {

@@ -6,12 +6,39 @@
 
 	<style>
 
-	 html{
-	 	overflow: scroll;
-	 }
+		/*html{
+		 	overflow: scroll;
+		}
 	  	html::-webkit-scrollbar {
 	      width: 0px;  
-	  	}
+	  	}*/
+	  	#header {
+			position: fixed;
+			left: 0px;
+			right: calc(25% + 20px);
+			top: 0px;
+			bottom: 80px;
+			height: calc(80px - 40px);
+			font-family: Helvetica, Arial, sans-serif;
+			color: white;
+			font-size: 200%;
+			margin-left: 20px;
+			margin-bottom: 20px;
+			margin-top: 20px;
+			width: calc(25% + 20px);
+		}
+
+		#addButton {
+			position: absolute;
+			left: calc(100% - 70px);
+			top: -10px;
+			font-size: 100%;
+			background-color: rgba(0,0,0,0);
+			border: 1px solid;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
 
 		#overlay{
 		   position: fixed;
@@ -58,15 +85,16 @@
 		}
 		#listWrapper{
 			background: rgba(255, 255, 255, 0.15);
-			position: absolute;
+			position: fixed;
 			top: 80px;
-			left: 10%;
+			left: 0%;
 			right: 35%;
 			width: 25%;
-			height: 75%;
+			height: calc(100% - 80px);
+			bottom: 100%;
 			overflow-x: auto;
 			overflow-y: scroll;
-			padding: 20px 20px 0 20px;
+			padding: 20px 20px 0px 20px;
 
 		    font-family: Helvetica, Arial, sans-serif;
 		    font-size: 120%;
@@ -86,23 +114,26 @@
 
 		#imageWrapper{
 			background: black;
-			position: absolute;
-			top: (35% + 80px);
-			left: calc(35% + 40px);
-			right: 90%;
-			width: calc(55% - 40px);
-			height: 55%;
+			position: fixed;
+			top: 0px;
+			left: calc(25% + 40px);
+			right: 100%;
+			width: calc(75% - 40px);
+			height: 70%;
 		}
 
 		#descriptionWrapper{
 			background: rgba(255, 255, 255, 0.9);
 			color: black;
-			position: absolute;
-			width: calc(55% - 80px);
-			height: calc(25% - 40px);
-			top: calc(50% + 100px);
-			left: calc(35% + 40px);
-			padding: 20px 20px 20px 20px;
+			position: fixed;
+			width: calc(75% - 80px);
+			height: 30%;
+			top: 70%;
+			bottom: 100%;
+			left: calc(25% + 40px);
+			margin-right: calc(100% - 20px);
+			padding-left: 20px;
+			padding-right: 20px;
 			overflow-x: auto;
 			overflow-y: scroll;
 		    font-family: Helvetica, Arial, sans-serif;
@@ -118,16 +149,6 @@
 		    left: 50%;
 		    top: 50%;
 		    transform: translate(-50%, -50%);
-		}
-
-		#addButton {
-			float: right;
-			font-size: 200%;
-			background-color: rgba(0,0,0,0);
-			border: 1px solid;
-			width: 42px;
-			border-radius: 150px;
-			margin-right: 10%;
 		}
 
 		#delButton {
@@ -164,26 +185,50 @@
 		}
 
 		#editWrapper {
-			background: rgba(255, 255, 255, .87);
-			position: absolute;
-			top: (35% + 75px);
-			left: calc(65% + 40px);
-			right: 90%;
-			width: calc(25% - 40px);
-			height: calc(55% - 20px);
+			display: none;
+			background-color: rgba(0, 0, 0, .5);
+			position: fixed;
+			top: 0px;
+			bottom: 70%;
+			height: calc(70% - 20px);
+			left: 80%;
+			right: 100%;
+			width: calc(20% - 20px);
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
 		    font-family: Helvetica, Arial, sans-serif;
-			overflow-x: scroll;
-			overflow-y: scroll;
-			padding-bottom: 20px;
+			overflow-x: auto;
+			overflow-y: auto;
+			font-size: 100%;
+			color: white;
 		}
 
-		#editWrapper button{
+		#closeEdit{
+			position: fixed;
+			top: 10px;
+			right: calc(100% - 40px);
+			left: calc(100% - 50px);
+			float: right;
+			font-size: 150%;
+			border: none;
+			color: white;
+			background: none;
+		}
+
+		#renameButton, #editDesc {
 			color: black;
-			margin-left: 20px;
+			border: none;
+			position: absolute;
+			left: calc(100% - 75px);
+			padding: 5px;
+			width: 50px;
 		}
 
 		#desc{
 			margin-left: 20px;
+			font-family: Helvetica, Arial, sans-serif;
 		}
 
 		#delete{
@@ -214,50 +259,49 @@
 			background: #9EE7FF;
 		}
 
-		#closeEdit{
-			position: absolute;
-			top: 10px;
-			left: calc(100% - 80px);
-			font-size: 150%;
-			color: black;
-			border: none;
-		}
-
 		#listWrapper img.active{
 			width: 100px;
 		}
 
 		#DRFrame{
 			display: none;
-			position: absolute;
+			/*position: fixed;
 			top: 0px;
 			left: 0;
 			right: 100%;
 			width: 100%;
-			height: 100%;
-	    }
+			height: 100%;*/
 
-	    #save, #cancel{
-	    	display: none;
-	    	color: black;
-	    }
-
-	    #save {
-	    	float: right;
-	    }
-
-	    #cancel {
-	    	float: left;
+			position: fixed;
+			top: 0px;
+			left: calc(25% + 40px);
+			right: 100%;
+			width: calc(75% - 40px);
+			height: 70%;
 	    }
 
 	    #DRButtons{
 	    	display: none;
-	    	position: fixed;
 	    	background-color: rgba(0, 0, 0, 0);
-	    	left: 10px;
-	    	width: calc(100% - 20px);
+	    	left: calc(25% + 50px);
+	    	right: 100%;
+	    	width: calc(75% - 55px);
 	    	top: 10px;
 	    }
+
+	    #save {
+	    	float: right;
+	    	display: none;
+	    	color: black;
+	    }
+
+	    #cancel {
+	    	left: calc(25% + 40px);
+	    	float: left;
+	    	display: none;
+	    	color: black;
+	    }
+
 
 	    .fileUpload {
 		    position: relative;
@@ -277,51 +321,62 @@
 		    filter: alpha(opacity=0);
 		}
 
-		#descriptionWrapper button, #DRButtons button, #editWrapper button {
+		#descriptionWrapper button, #DRButtons button{
 			border: none;
 			padding: 10px;
 		}
 
-		#descriptionWrapper button:hover, #DRButtons button:hover, #editWrapper button:hover {
+		#descriptionWrapper button:hover, #DRButtons button:hover{
+			background: #9EE7FF;
+		}
+
+		#closeEdit:hover {
+			color: #9EE7FF;
+		} 
+
+		#renameButton:hover, #editDesc:hover{
 			background: #9EE7FF;
 		}
 
 		#filtersWrapper {
-			display: none;
-			background: rgba(255, 255, 255, .8);
-			position: absolute;
-			top: (35% + 75px);
-			left: calc(73% + 30px);
-			right: 90%;
-			width: calc(17% - 50px);
-			height: calc(55% - 30px);
-		    font-family: Helvetica, Arial, sans-serif;
-			overflow-x: scroll;
-			overflow-y: scroll;
+			background-color: rgba(0, 0, 0, .5);
+			position: fixed;
+			top: 0px;
+			bottom: 70%;
+			height: calc(70% - 40px);
+			left: 80%;
+			right: 100%;
+			width: calc(20% - 40px);
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 20px;
 			padding-bottom: 20px;
-			padding-left: 10px;
-			padding-top: 10px;
-			padding-right: 10px;
+		    font-family: Helvetica, Arial, sans-serif;
+			overflow-x: auto;
+			overflow-y: auto;
 			font-size: 80%;
+			color: white;
 		}
 
 		#filtersWrapper button {
 			color: black;
 			border: none;
-			background: #9EE7FF;
+			padding-left: 10px;
+			padding-right: 10px;
+			height: 30px;
 		}
 
 		#filtersWrapper button:hover{
 			cursor: pointer;
-			background: white;
+			background: #9EE7FF;
 		}
 
 		input[type=range]{
 		    -webkit-appearance: none;
+		    width: 80%;
 		}
 
 		input[type=range]::-webkit-slider-runnable-track {
-		    width: 300px;
 		    height: 5px;
 		    background: #005E7D;
 		    border: none;
@@ -389,6 +444,7 @@
 			$("#overlay").hide();
 			$('#editWrapper').hide();
 			$("#filtersWrapper").hide();
+
 			var url = "./getList";
 			loadFile(url, function(d){
 				console.log(d);
@@ -421,7 +477,10 @@
 				var url = "./deleteImage" + "?id=" + index;
 				console.log(url);
 				loadFile(url, function(d){
-					formatList(JSON.parse(d));
+					var data = JSON.parse(d);
+					formatList(data);
+					itemSelected(data.length - 1);
+			        displayImage(data[data.length - 1].id);
 				})
 			}
 		}
@@ -436,9 +495,9 @@
 
 			for (var i = 0; i < list.length; i++){
 				var item = list[i];
-				markup += "<img style='width: 60px; filter:" + "saturate(" + list[i].saturate + "%)" + " brightness(" + list[i].brightness + "%)" + " contrast(" + list[i].contrast + "%)" + " invert(" + list[i].invert + "%)" + " hue-rotate(" + list[i].hue + "deg)" + " sepia(" + list[i].sepia + "%)" + " grayscale(" + list[i].grayscale + "%)" + " blur(" + list[i].blur + "px)' src='" + list[i].imageURL + "'>";
+				markup += "<img style='background: black; vertical-align: middle; height: 60px; width: 60px; object-fit: contain; object-position: center; filter:" + "saturate(" + list[i].saturate + "%)" + " brightness(" + list[i].brightness + "%)" + " contrast(" + list[i].contrast + "%)" + " invert(" + list[i].invert + "%)" + " hue-rotate(" + list[i].hue + "deg)" + " sepia(" + list[i].sepia + "%)" + " grayscale(" + list[i].grayscale + "%)" + " blur(" + list[i].blur + "px)' src='" + list[i].imageURL + "'>";
 				markup += "<a href='javascript:itemSelected(" + i + "); javascript:displayImage(" + list[i].id + ")' style='padding-left: 10px'>" + list[i].title + "</a>" 
-					+ "<button id='delButton' onclick='deleteImage(" + list[i].id + ")'> X </button>"; 
+					+ "<button id='delButton' onclick='deleteImage(" + list[i].id + ")'> ✖ </button>"; 
 				markup += "<hr>";
 			}
 			document.getElementById('listWrapper').innerHTML = markup;
@@ -488,16 +547,16 @@
 
 			var editMU = "";
 			editMU += "<h2 style='margin-left: 20px'> Edit Details </h2>";
-			editMU += "<button id='closeEdit' onclick='hideEditWrapper()'> X </button>";
+			editMU += "<button id='closeEdit' onclick='hideEditWrapper()'> ✖ </button>";
 
 			//editMU += "<h4> URL </h4><input id='imageURL' placeholder='New URL'><br>";
 			//editMU += "<button onclick='editURL(" + imageData[0].id + "), updateURL()'> Enter new URL </button>";
 
-			editMU += "<h4> Title </h4><input id='title' val='" + imageData[0].title + "'><br>";
+			editMU += "<h4> Title </h4><input id='title' val='" + imageData[0].title + "' style='width: 50%'>";
 			editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Save </button>";
 
-			editMU += "<h4> Description </h4><textarea id='desc' style='width: 80%; height: 20%' value='" + imageData[0].desc + "'> </textarea>";
-			editMU += "<br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Save </button>";
+			editMU += "<h4> Description </h4><textarea id='desc' style='right: calc(100% - 20px); left: 0px; width: calc(100% - 40px); height: 30%' value='" + imageData[0].desc + "'> </textarea>";
+			editMU += "<br><br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Save </button>";
 			document.getElementById('editWrapper').innerHTML = editMU;
 		}
 
@@ -564,6 +623,9 @@
 		}
 
 		function darkroom(){
+			hideEditWrapper();
+			hideFiltersWrapper();
+			$("#editImage").addClass("clicked");
 			$("#overlay").fadeIn().delay(6400);
 			$("#overlay").fadeOut();
 
@@ -578,6 +640,7 @@
 		}
 
 		function cancelDarkroom() {
+			$("#editImage").removeClass("clicked");
 			document.getElementById("DRFrame").src = "";
 			document.getElementById("DRWrapper").style.display = "none";
 			$("#DRWrapper, #cancel, #save").hide();
@@ -621,6 +684,9 @@
 					$("#listWrapper a:nth-of-type(" + (imageData.length) + "), #listWrapper img:nth-of-type(" + (imageData.length) + ")").addClass('active');
 				})
 				displayImage(id);
+				cancelDarkroom();
+				hideFiltersWrapper();
+				hideEditWrapper();
 		    };
 		    xhr.open("POST", "/uploadFile", true);
 		    xhr.send(fd);
@@ -736,7 +802,6 @@
 	          " sepia(" + document.getElementById("sepia").value + "%)" +
 	          " grayscale(" + document.getElementById("grayscale").value + "%)" +
 	          " blur(" + document.getElementById("blur").value + "px)";
-
 			$("#image").css("filter", filter);
 
 			$(document).on('input', '#brightness', function() {
@@ -763,6 +828,23 @@
 			$(document).on('input', '#blur', function() {
 			    $('#blurVal').html( $(this).val() + "px");
 			});
+
+			var brightness = document.getElementById("brightness").value + "%";
+				document.getElementById("brightnessVal").innerHTML = brightness;
+			var saturate = document.getElementById("saturate").value + "%";
+				document.getElementById("saturateVal").innerHTML = saturate;
+			var contrast = document.getElementById("contrast").value + "%";
+				document.getElementById("contrastVal").innerHTML = contrast;
+			var blur = document.getElementById("blur").value + "px";
+				document.getElementById("blurVal").innerHTML = blur;	      
+			var sepia = document.getElementById("sepia").value + "%";
+				document.getElementById("sepiaVal").innerHTML = sepia;	      
+			var grayscale = document.getElementById("grayscale").value + "%";
+				document.getElementById("grayscaleVal").innerHTML = grayscale;
+			var invert = document.getElementById("invert").value + "%";
+				document.getElementById("invertVal").innerHTML = invert;
+			var hue = document.getElementById("hue").value + "°";
+				document.getElementById("hueVal").innerHTML = hue;
 	    }
 
 	    function cancelFilter() {
@@ -780,18 +862,18 @@
 </head>
 
 <body onload="getList()" bgcolor="#78A0AD">
-	<!-- <button id='addButton' onchange='addNew()'> + </button> -->
-	<button class="fileUpload" id='addButton'>
-	    <span> + </span>
-	    <input type='file' id='theFileUploader' class='upload' onchange='fileUploaded()'>
-    </button>
+	<div id="header">
+		My Images
+		<button class="fileUpload" id='addButton'>
+		    <span> + </span>
+		    <input type='file' id='theFileUploader' class='upload' onchange='fileUploaded()'>
+	    </button>
+	</div>
 
-	<h1 style='margin-left:170px' align="center"><font face="Helvetica, Arial, sans-serif" color="white"> My Image Collection </font></h1>
 	<div id='listWrapper'> </div>
 	<div id='descriptionWrapper'> </div>
 	<div id='imageWrapper'> </div>
 	<div id='editWrapper'> </div>
-
 
   	<div id='DRWrapper'> 
 	    <iframe crossorigin='anonymous' id='DRFrame'> </iframe>

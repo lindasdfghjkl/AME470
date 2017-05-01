@@ -9,20 +9,21 @@
   <style>
   body{
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: rgba(0, 0, 0, 1); 
+    padding-left: 5%;
   }
 
   html::-webkit-scrollbar {
-      width: 50px;  /* remove scrollbar space */
-      background: rgba(0, 0, 0, 0);  /* optional: just make scrollbar invisible */
+      width: 0px;
+      background: rgba(0, 0, 0, 0);  
   }
 
-  #filterWrapper {
+ /* #filterWrapper {
     color: white;
     position: fixed;
     left: 75%;
     top: 5%;
-  }
+  }*/
   </style>
 
 </head>
@@ -36,11 +37,8 @@
     <div class="container">
       <section class="copy">
         <div class="figure-wrapper">
-          <figure class="image-container target">
+          <figure class="image-container target" style="background: none; border: none">
             <img crossorigin='anonymous' src="" alt="" id="target">
-
-            <figcaption id='caption' class="image-meta">
-            </figcaption>
           </figure>
         </div>
       </section>
@@ -84,8 +82,8 @@
         minWidth: 200,
         minHeight: 200,
         maxWidth: 600,
-        maxHeight: 600,
-        ratio: 4/3,
+        maxHeight: 800,
+        ratio: 16/9,
         backgroundColor: 'rgba(0, 0, 0, 0)',
 
         // Plugins options

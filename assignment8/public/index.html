@@ -302,6 +302,7 @@
 			padding-left: 10px;
 			padding-top: 10px;
 			padding-right: 10px;
+			font-size: 80%;
 		}
 
 		#filtersWrapper button {
@@ -664,7 +665,25 @@
 			document.getElementById("saturate").value = imageData[0].saturate;
 			document.getElementById("hue").value = imageData[0].hue;
 			document.getElementById("grayscale").value = imageData[0].grayscale;
+
+			var brightness = document.getElementById("brightness").value + "%";
+				document.getElementById("brightnessVal").innerHTML = brightness;
+			var saturate = document.getElementById("saturate").value + "%";
+				document.getElementById("saturateVal").innerHTML = saturate;
+			var contrast = document.getElementById("contrast").value + "%";
+				document.getElementById("contrastVal").innerHTML = contrast;
+			var blur = document.getElementById("blur").value + "px";
+				document.getElementById("blurVal").innerHTML = blur;	      
+			var sepia = document.getElementById("sepia").value + "%";
+				document.getElementById("sepiaVal").innerHTML = sepia;	      
+			var grayscale = document.getElementById("grayscale").value + "%";
+				document.getElementById("grayscaleVal").innerHTML = grayscale;
+			var invert = document.getElementById("invert").value + "%";
+				document.getElementById("invertVal").innerHTML = invert;
+			var hue = document.getElementById("hue").value + "°";
+				document.getElementById("hueVal").innerHTML = hue;
 		}
+
 		function hideFiltersWrapper() {
 			$("#filtersWrapper").hide();
 			$("#filters").removeClass("clicked");
@@ -712,6 +731,23 @@
 	          " blur(" + document.getElementById("blur").value + "px)";
 
 	      $("#image").css("filter", filter);
+
+	      var brightness = document.getElementById("brightness").value + "%";
+	      	document.getElementById("brightnessVal").innerHTML = brightness;
+	      var saturate = document.getElementById("saturate").value + "%";
+	      	document.getElementById("saturateVal").innerHTML = saturate;
+	      var contrast = document.getElementById("contrast").value + "%";
+	      	document.getElementById("contrastVal").innerHTML = contrast;
+	      var blur = document.getElementById("blur").value + "px";
+	      	document.getElementById("blurVal").innerHTML = blur;	      
+	      var sepia = document.getElementById("sepia").value + "%";
+	      	document.getElementById("sepiaVal").innerHTML = sepia;	      
+	      var grayscale = document.getElementById("grayscale").value + "%";
+	      	document.getElementById("grayscaleVal").innerHTML = grayscale;
+	      var invert = document.getElementById("invert").value + "%";
+	      	document.getElementById("invertVal").innerHTML = invert;
+	      var hue = document.getElementById("hue").value + "°";
+	      	document.getElementById("hueVal").innerHTML = hue;
 	    }
 
 	    function cancelFilter() {
@@ -760,21 +796,21 @@
 	  <button onclick='cancelFilter()'> Cancel </button>
 	  <button style="float: right" onclick='saveFilter()'> Save </button>
 
-      <br><br>Brightness<br>
-        <input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()">
-      <br><br>Contrast<br>
+      <br><br>Brightness <div style='float: right' id="brightnessVal"></div><br>
+        <input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()"> 
+      <br><br>Contrast <div style='float: right' id="contrastVal"></div><br>
         <input type="range" id="contrast" min="0" max="200" value="100" onchange="updateFilter()">
-      <br><br>Saturation<br>
+      <br><br>Saturation <div style='float: right' id="saturateVal"></div><br>
         <input type="range" id="saturate" min="0" max="200" value="100" onchange="updateFilter()">
-      <br><br>Hue<br>
+      <br><br>Hue <div style='float: right' id="hueVal"></div><br>
         <input type="range" id="hue" min="0" max="360" value="0" onchange="updateFilter()">
-      <br><br>Invert<br>
+      <br><br>Invert <div style='float: right' id="invertVal"></div><br>
         <input type="range" id="invert" min="0" max="100" value="0" onchange="updateFilter()">
-      <br><br>Grayscale<br>
+      <br><br>Grayscale <div style='float: right' id="grayscaleVal"></div><br>
         <input type="range" id="grayscale" min="0" max="100" value="0" onchange="updateFilter()">
-      <br><br>Sepia<br>
+      <br><br>Sepia <div style='float: right' id="sepiaVal"></div><br>
         <input type="range" id="sepia" min="0" max="100" value="0" onchange="updateFilter()">
-      <br><br>Blur<br>
+      <br><br>Blur <div style='float: right' id="blurVal"></div><br>
         <input type="range" id="blur" min="0" max="100" value="0" onchange="updateFilter()">
     </div>
 

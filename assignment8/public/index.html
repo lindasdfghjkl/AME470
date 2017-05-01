@@ -316,7 +316,6 @@
 			background: white;
 		}
 
-
 		input[type=range]{
 		    -webkit-appearance: none;
 		}
@@ -392,8 +391,11 @@
 			$("#filtersWrapper").hide();
 			var url = "./getList";
 			loadFile(url, function(d){
-				formatList(JSON.parse(d));
 				console.log(d);
+				var data = JSON.parse(d);
+				formatList(data);
+				itemSelected(0);
+			    displayImage(data[0].id);
 			})
 
 			document.getElementById("uploadBtn").onchange = function () {
@@ -434,15 +436,7 @@
 
 			for (var i = 0; i < list.length; i++){
 				var item = list[i];
-				markup += "<img style='width: 60px; filter:" + "saturate(" + list[i].saturate + "%)" +
-	          " brightness(" + list[i].brightness + "%)" + 
-	          " contrast(" + list[i].contrast + "%)" +
-	          " invert(" + list[i].invert + "%)" +
-	          " hue-rotate(" + list[i].hue + "deg)" +
-	          " sepia(" + list[i].sepia + "%)" +
-	          " grayscale(" + list[i].grayscale + "%)" +
-	          " blur(" + list[i].blur + "px)' src='" + list[i].imageURL + "'>";
-
+				markup += "<img style='width: 60px; filter:" + "saturate(" + list[i].saturate + "%)" + " brightness(" + list[i].brightness + "%)" + " contrast(" + list[i].contrast + "%)" + " invert(" + list[i].invert + "%)" + " hue-rotate(" + list[i].hue + "deg)" + " sepia(" + list[i].sepia + "%)" + " grayscale(" + list[i].grayscale + "%)" + " blur(" + list[i].blur + "px)' src='" + list[i].imageURL + "'>";
 				markup += "<a href='javascript:itemSelected(" + i + "); javascript:displayImage(" + list[i].id + ")' style='padding-left: 10px'>" + list[i].title + "</a>" 
 					+ "<button id='delButton' onclick='deleteImage(" + list[i].id + ")'> X </button>"; 
 				markup += "<hr>";
@@ -622,7 +616,9 @@
 				loadFile(url, function(d){
 					imageData = JSON.parse(d);
 					formatList(imageData);
-					itemSelected(imageData.length);
+				    itemSelected(imageData.length);
+				    $("#listWrapper a, #listWrapper img").removeClass('active');
+					$("#listWrapper a:nth-of-type(" + (imageData.length) + "), #listWrapper img:nth-of-type(" + (imageData.length) + ")").addClass('active');
 				})
 				displayImage(id);
 		    };

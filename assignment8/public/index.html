@@ -315,24 +315,28 @@
 			background: #9EE7FF;
 		}
 
+
+		input[type=range]{
+		    -webkit-appearance: none;
+		}
+
 		input[type=range]::-webkit-slider-runnable-track {
-		  width: 100%;
-		  height: 8.4px;
-		  cursor: pointer;
-		  background: #005E7D;
-		  border: 0.2px solid #010101;
+		    width: 300px;
+		    height: 5px;
+		    background: #005E7D;
+		    border: none;
+		    border-radius: 3px;
 		}
 
 		input[type=range]::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		  height: 5px;
-		  width: 10px;
-		  border-radius: 1px;
-		  background: red;
-		  cursor: pointer;
-		  margin-top: -7px; 
+		    -webkit-appearance: none;
+		    border: 2px solid white;
+		    height: 14px;
+		    width: 14px;
+		    border-radius: 50%;
+		    background: #9EE7FF;
+		    margin-top: -4px;
 		}
-
 	</style>
 
 	<script src='asyncReq.js'></script>
@@ -508,7 +512,7 @@
 			$("#editDetails").addClass("clicked");
 			$("#filters").removeClass("clicked");
 		}
-		
+
 		function hideEditWrapper(){
 			$('#editWrapper').hide();
 			$("#editDetails").removeClass("clicked");

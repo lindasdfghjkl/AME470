@@ -1,0 +1,1235 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width, maximum-scale=1.0">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+	<style>
+
+		/*html{
+		 	overflow: scroll;
+		}
+	  	html::-webkit-scrollbar {
+	      width: 0px;  
+	  	}*/
+	  	#header {
+			position: fixed;
+			left: 0px;
+			right: calc(25% + 20px);
+			top: 0px;
+			bottom: 80px;
+			height: calc(80px - 40px);
+			font-family: Helvetica, Arial, sans-serif;
+			color: white;
+			font-size: 200%;
+			margin-left: 20px;
+			margin-bottom: 20px;
+			margin-top: 20px;
+			width: calc(25% + 20px);
+		}
+
+		#addButton {
+			position: absolute;
+			left: calc(100% - 70px);
+			top: -10px;
+			font-size: 100%;
+			background-color: rgba(0,0,0,0);
+			border: 1px solid;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+
+		#overlay{
+		   position: fixed;
+		   width: 100%;
+		   height: 100%;
+		   top: 0px;
+		   left: 0px;
+		   background: rgba(0,0,0,.7);
+		}
+		@keyframes infSpinning {
+		    0% {transform: rotate(0deg);}
+		    100% {transform: rotate(360deg);}
+		}
+		.aniSpin{
+		  animation-name: infSpinning;
+		  animation-duration: 1s;
+		  animation-iteration-count: infinite;
+		  transition-timing-function: linear;
+		}
+		#spinner{
+		  color: white;
+		  font-size: 50px;
+		  margin: auto;
+		  display: block;
+		  height: 50px;
+		  width: 50px;
+		  text-align: center;
+		  margin-top: 200px;
+		}
+
+		button{
+			color: white;
+			border-color: white;
+		}
+
+		#descriptionWrapper button{
+			color: black;
+		}
+
+		#listWrapper a:hover, button:hover{
+			cursor: pointer;
+			color: #9EE7FF;
+			border-color: #9EE7FF;
+		}
+		#listWrapper{
+			background: rgba(255, 255, 255, 0.15);
+			position: fixed;
+			top: 80px;
+			left: 0%;
+			right: 35%;
+			width: 25%;
+			height: calc(100% - 80px);
+			bottom: 100%;
+			overflow-x: auto;
+			overflow-y: scroll;
+			padding: 20px 20px 0px 20px;
+
+		    font-family: Helvetica, Arial, sans-serif;
+		    font-size: 120%;
+		    color: rgba(255 , 255, 255, 0.8);
+		}
+
+		#listWrapper a{
+			text-decoration: none;
+			color: white;
+		    font-family: Helvetica, Arial, sans-serif;
+		    font-size: 100%;
+		}
+
+		#listWrapper a.active{
+			color: #005E7D;
+		}
+
+		#imageWrapper{
+			background: black;
+			position: fixed;
+			top: 0px;
+			left: calc(25% + 40px);
+			right: 100%;
+			width: calc(75% - 40px);
+			height: 70%;
+		}
+
+		#descriptionWrapper{
+			background: rgba(255, 255, 255, 0.9);
+			color: black;
+			position: fixed;
+			width: calc(75% - 80px);
+			height: 30%;
+			top: 70%;
+			bottom: 100%;
+			left: calc(25% + 40px);
+			margin-right: calc(100% - 20px);
+			padding-left: 20px;
+			padding-right: 20px;
+			overflow-x: auto;
+			overflow-y: scroll;
+		    font-family: Helvetica, Arial, sans-serif;
+		}
+
+		#image{
+			max-width: 100%;
+			max-height: 100%;
+			margin: auto;
+		 	display: block;
+
+	 	    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    transform: translate(-50%, -50%);
+		}
+
+		#delButton {
+			float: right;
+			background-color: rgba(0,0,0,0);
+			border: 0px;
+		}
+
+		h1 {
+			color: black;
+		}
+
+		h4 {
+			margin-left: 20px;
+		}
+
+		input{
+			margin-left: 20px;
+		}
+
+		#renameButton{
+			margin-right: 20px;
+		}
+
+		#title{
+			margin-left: 20px;
+		}
+
+		#descriptionWrapper .delete{
+			background-color: gray;
+			color: white;
+			border: 0px;
+			padding: 5px 10px;
+		}
+
+		#editWrapper {
+			display: none;
+			background-color: rgba(0, 0, 0, .5);
+			position: fixed;
+			top: 0px;
+			bottom: 70%;
+			height: calc(70% - 20px);
+			left: 80%;
+			right: 100%;
+			width: calc(20% - 20px);
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		    font-family: Helvetica, Arial, sans-serif;
+			overflow-x: auto;
+			overflow-y: auto;
+			font-size: 100%;
+			color: white;
+		}
+
+		#closeEdit{
+			position: fixed;
+			top: 10px;
+			right: calc(100% - 40px);
+			left: calc(100% - 50px);
+			float: right;
+			font-size: 150%;
+			border: none;
+			color: white;
+			background: none;
+		}
+
+		#renameButton, #editDesc {
+			color: black;
+			border: none;
+			position: absolute;
+			left: calc(100% - 75px);
+			padding: 5px;
+			width: 50px;
+		}
+
+		#desc{
+			margin-left: 20px;
+			font-family: Helvetica, Arial, sans-serif;
+		}
+
+		#delete{
+			margin-top: 20px;
+			float: right;
+			padding: 10px 10px;
+		}
+
+		#editDetails{
+			margin-top: 20px;
+			float: right;
+			padding: 10px 10px;
+		}
+
+		#editImage{
+			margin-top: 20px;
+			float: right;
+			padding: 10px 10px;
+		}
+
+		#filters{
+			margin-top: 20px;
+			float: right;
+			padding: 10px 10px;
+		}
+
+		.clicked {
+			background: #9EE7FF;
+		}
+
+		#listWrapper img.active{
+			width: 100px;
+		}
+
+		#DRFrame{
+			display: none;
+			/*position: fixed;
+			top: 0px;
+			left: 0;
+			right: 100%;
+			width: 100%;
+			height: 100%;*/
+
+			position: fixed;
+			top: 0px;
+			left: calc(25% + 40px);
+			right: 100%;
+			width: calc(75% - 40px);
+			height: 70%;
+	    }
+
+	    #DRButtons{
+	    	display: none;
+	    	background-color: rgba(0, 0, 0, 0);
+	    	left: calc(25% + 50px);
+	    	right: 100%;
+	    	width: calc(75% - 55px);
+	    	top: 10px;
+	    }
+
+	    #save {
+	    	float: right;
+	    	display: none;
+	    	color: black;
+	    }
+
+	    #cancel {
+	    	left: calc(25% + 40px);
+	    	float: left;
+	    	display: none;
+	    	color: black;
+	    }
+
+
+	    .fileUpload {
+		    position: relative;
+		    overflow: hidden;
+		    margin: 10px;
+		}
+
+		.fileUpload input.upload {
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    margin: 0;
+		    padding: 0;
+		    font-size: 20px;
+		    cursor: pointer;
+		    opacity: 0;
+		    filter: alpha(opacity=0);
+		}
+
+		#descriptionWrapper button, #DRButtons button{
+			border: none;
+			padding: 10px;
+		}
+
+		#descriptionWrapper button:hover, #DRButtons button:hover{
+			background: #9EE7FF;
+		}
+
+		#closeEdit:hover {
+			color: #9EE7FF;
+		} 
+
+		#renameButton:hover, #editDesc:hover{
+			background: #9EE7FF;
+		}
+
+		#filtersWrapper {
+			background-color: rgba(0, 0, 0, .7);
+			position: fixed;
+			top: 0px;
+			bottom: 70%;
+			height: calc(70% - 40px);
+			left: 80%;
+			right: 100%;
+			width: calc(20% - 40px);
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		    font-family: Helvetica, Arial, sans-serif;
+			overflow-x: auto;
+			overflow-y: auto;
+			font-size: 80%;
+			color: white;
+		}
+
+		#saveFilter, #cancelFilter {
+			color: black;
+			border: none;
+			padding-left: 10px;
+			padding-right: 10px;
+			height: 30px;
+		}
+
+		#filtersWrapper button:hover{
+			cursor: pointer;
+			background: #9EE7FF;
+		}
+
+		input[type=range]{
+		    -webkit-appearance: none;
+		    width: 80%;
+		}
+
+		input[type=range]::-webkit-slider-runnable-track {
+		    height: 5px;
+		    background: #005E7D;
+		    border: none;
+		    border-radius: 3px;
+		}
+
+		input[type=range]::-webkit-slider-thumb {
+		    -webkit-appearance: none;
+		    border: 2px solid white;
+		    height: 14px;
+		    width: 14px;
+		    border-radius: 50%;
+		    background: #9EE7FF;
+		    margin-top: -4px;
+		}
+
+		#mobile {
+			display: none;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+		}
+
+		@media (max-width: 800px) {
+			#filtersM {
+				position: relative;
+				top: 0px;
+				float: right;
+				color: white;
+				background-color: black;
+				border: none;
+				font-size: 120%;
+				padding: 7px;
+			}
+
+			#darkroomM {
+				position: relative;
+				float: right;
+				background-color: black;
+				color: white;
+				border: none;
+				font-size: 120%;
+				padding: 7px;
+
+			}
+
+			#header {
+				position: fixed;
+				width: calc(100% - 20px);
+			}
+
+			#listWrapper {
+				position: fixed;
+				width: calc(100% - 40px);
+			}
+
+			#imageWrapper {
+				display: none;
+				position: fixed;
+				left: 0px;
+				right: 100%;
+				width: 100%;
+				top: 30px;
+				height: calc(100% - 60px);
+			}
+
+			#descriptionWrapper {
+				position: fixed;
+				display: none;
+				background-color: rgba(0, 0, 0, 0.75);
+				color: white;
+
+				left: 0px;
+				bottom: 100%;
+				right: 100%;
+				width: calc(100% - 40px);
+				top: 70%;
+				height: calc(30% - 30px);
+			}
+
+			h1 {
+				color: white;
+			}
+
+			#back {
+				position: fixed;
+				display: block;
+				top: 0px;
+				left: 0px;
+				color: white;
+				height: 30px;
+				font-size: 175%;
+				background-color: black;
+				border: none;
+			}
+
+			#deleteM {
+				position: fixed;
+				right: 100%;
+				top: calc(100% - 30px);
+				left: calc(100% - 50px);
+				color: white;
+				background-color: black;
+				border: none;
+				height: 30px;
+			}
+
+			#detailsM {
+				position: fixed;
+				left: 0px;
+				top: calc(100% - 30px);
+				color: white;
+				background-color: black;
+				border: none;
+				height: 30px;
+			}
+
+			#editDetailsM {
+				display: none;
+				float: right;
+				position: absolute;
+				top: calc(70% + 10px);
+				left: calc(100% - 45px);
+				padding: 5px;
+				border: none;
+				font-size: 150%;
+				background-color: transparent;
+				color: white;
+			}
+
+			#DRFrame, #DRWrapper{
+				display: none;
+				position: fixed;
+				top: 0px;
+				left: 0%;
+				right: 100%;
+				width: 100%;
+				bottom: calc(100% - 35px);
+				height: calc(100% - 35px); 
+				overflow: scroll;
+				border: none;
+			}
+
+			#cancel {
+				margin-top: -5px;
+				padding: 0;
+				position: fixed;
+				left: 0px;
+				top: calc(100% - 30px);
+				color: white;
+				background-color: transparent;
+				border-top: 1px solid white;
+				height: 30px;
+			}
+
+			#save {
+				margin-top: -5px;
+				padding-top: -20px;
+				position: fixed;
+				right: 100%;
+				top: calc(100% - 30px);
+				left: calc(100% - 50px);
+				color: white;
+				background-color: transparent;
+				border-top: 1px solid white;
+				height: 30px;
+			}
+
+			#filtersWrapper {
+				position: fixed;
+				width: calc(100% - 40px);
+				left: 0px;
+				right: calc(100% - 40px);
+				top: 60%;
+				bottom: calc(100% - 40px);
+				height: calc(40% - 70px);
+				color: white;
+			}
+
+			#saveFilter {
+				position: fixed;
+				right: 100%;
+				top: calc(100% - 30px);
+				left: calc(100% - 50px);
+				color: white;
+				background-color: black;
+				border: none;
+				height: 30px;
+			}
+
+			#cancelFilter {
+				position: fixed;
+				left: 0px;
+				top: calc(100% - 30px);
+				color: white;
+				background-color: black;
+				border: none;
+				height: 30px;
+			}
+
+			#editWrapper {
+				position: fixed;
+				left: 0px;
+				right: 100%;
+				width: calc(100% - 20px);
+				top: 0px;
+				bottom: 100%;
+				height: 100%;
+			}
+
+			#editDesc {
+				position: fixed;
+				top: 67%;
+			}
+
+			#saveAll {
+				display: none;
+				position: fixed;
+				right: 100%;
+				top: calc(100% - 30px);
+				left: calc(100% - 50px);
+				color: white;
+				background-color: black;
+				border: none;
+				height: 30px;
+			}
+
+			#closeEditM {
+				display: none;
+				position: fixed;
+				left: 0px;
+				top: calc(100% - 30px);
+				color: white;
+				background-color: black;
+				border: none;
+				height: 30px;
+			}
+		}
+	</style>
+
+	<script src='asyncReq.js'></script>
+	<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+
+	<script>
+		var touch = null;
+		var mouse = null;
+		var ios = null;
+		var iphone = null;
+		var android = null;
+
+		function parseUA(){
+			var ua = navigator.userAgent.toLowerCase();
+			if(ua.indexOf("iphone") >= 0){
+				touch = true;
+				mouse = false;
+				ios = true;
+				iphone = true;
+				android = false;
+			} else if (ua.indexOf("ipad") >= 0){
+				touch = true;
+				mouse = false;
+				ios = true;
+				iphone = false;
+				android = false;
+			} else if (ua.indexOf("android") >= 0){
+				touch = true;
+				mouse = false;
+				ios = false;
+				iphone = false;
+				android = true;
+			} else {
+				touch = false;
+				mouse = true;
+				ios = false;
+				iphone = false;
+				android = false;
+			}
+			
+			if (mouse){
+				$("#body").addClass("mouse");
+			} else{
+				$("#body").addClass("touch");		
+			}
+		}
+
+		function getList(){
+			parseUA();
+			$("#mobile").hide();
+			$("#overlay").hide();
+			$('#editWrapper').hide();
+			$("#filtersWrapper").hide();
+
+			var url = "./getList";
+			loadFile(url, function(d){
+				console.log(d);
+				var data = JSON.parse(d);
+				formatList(data);
+
+				if ($(window).innerWidth() >= 800) {
+					itemSelected(0);
+				    displayImage(data[0].id);
+				}
+			})
+
+			document.getElementById("uploadBtn").onchange = function () {
+			    document.getElementById("uploadFile").value = this.value;
+			};
+		}
+		
+		/*function addNew(){
+			var imageURL = prompt("Enter New URL");
+			var id = new Date().getTime();
+
+			var url = "./addImage" + "?id=" + id + "&imageURL=" + imageURL + "&title=Untitled&desc=No description";
+			console.log(url);
+			loadFile(url, function(d){
+				formatList(JSON.parse(d));
+			})
+		}*/
+
+		function deleteImage(index){
+			var flag = confirm("Are you sure you want to delete this image?");
+
+			if (flag){
+				var url = "./deleteImage" + "?id=" + index;
+				console.log(url);
+				loadFile(url, function(d){
+					var data = JSON.parse(d);
+					formatList(data);
+
+			        if ($(window).innerWidth() >= 800) {
+						itemSelected(data.length - 1);
+				        displayImage(data[data.length - 1].id);
+			        } else {
+			        	goBack();
+			        }
+				})
+			}
+		}
+
+		function formatList(list){
+			var markup = "";
+
+			if (list.length == 0){
+				markup = "<p style='text-align: center'> No images added </p>";
+				document.getElementById("listWrapper").innerHTML = markup;
+			}
+
+			for (var i = 0; i < list.length; i++){
+				var item = list[i];
+				markup += "<img style='background: black; vertical-align: middle; height: 60px; width: 60px; object-fit: contain; object-position: center; filter:" + "saturate(" + list[i].saturate + "%)" + " brightness(" + list[i].brightness + "%)" + " contrast(" + list[i].contrast + "%)" + " invert(" + list[i].invert + "%)" + " hue-rotate(" + list[i].hue + "deg)" + " sepia(" + list[i].sepia + "%)" + " grayscale(" + list[i].grayscale + "%)" + " blur(" + list[i].blur + "px)' src='" + list[i].imageURL + "'>";
+				markup += "<a href='javascript:itemSelected(" + i + "); javascript:displayImage(" + list[i].id + ")' style='padding-left: 10px'>" + list[i].title + "</a>" 
+					+ "<button id='delButton' onclick='deleteImage(" + list[i].id + ")'> ✖ </button>"; 
+				markup += "<hr>";
+			}
+			document.getElementById('listWrapper').innerHTML = markup;
+		}
+
+		function itemSelected(index){
+			$("#listWrapper a, #listWrapper img").removeClass('active');
+			$("#listWrapper a:nth-of-type(" + (index+1) + "), #listWrapper img:nth-of-type(" + (index+1) + ")").addClass('active');
+		}
+
+		var imageData;
+		function displayImage(index){
+			$("#filtersWrapper, #editWrapper").hide();
+
+			var url = "./displayImage" + "?id=" + index + "&blur=" + blur + "&contrast=" + contrast + "&brightness=" + brightness + "&hue=" + hue + "&saturate=" + saturate + "&invert=" + invert + "&sepia=" + sepia + "&grayscale=" + grayscale;
+			console.log(url);
+			loadFile(url, function(d){
+				imageData = JSON.parse(d);
+				formatDetails(imageData);
+			})
+
+			if ($(window).innerWidth() < 800) {
+				$("#header").hide();
+				$("#listWrapper").hide();
+				$("#imageWrapper").show();
+				$("#mobile").show();
+				document.getElementById("descriptionWrapper").style.display = 'none';
+			}
+		}
+
+		function formatDetails(list){
+			var imageMU = "";
+			imageMU += "<img id='image' src='" + imageData[0].imageURL + "' style='filter:" + 
+			  "saturate(" + imageData[0].saturate + "%)" +
+	          " brightness(" + imageData[0].brightness + "%)" + 
+	          " contrast(" + imageData[0].contrast + "%)" +
+	          " invert(" + imageData[0].invert + "%)" +
+	          " hue-rotate(" + imageData[0].hue + "deg)" +
+	          " sepia(" + imageData[0].sepia + "%)" +
+	          " grayscale(" + imageData[0].grayscale + "%)" +
+	          " blur(" + imageData[0].blur + "px)'>";
+			document.getElementById('imageWrapper').innerHTML = imageMU;
+
+			var descriptionMU = "";
+			descriptionMU += "<button id='delete' onclick='deleteImage(" + imageData[0].id + ")'> Delete </button>";
+			descriptionMU += "<button id='editDetails' onclick='showEditWrapper()'> Edit Details </button>";
+			descriptionMU += "<button id='filters' onclick='showFiltersWrapper()'> Filter </button>";
+			descriptionMU += "<button id='editImage' onclick='darkroom()'> Rotate/Crop </button>";
+
+			descriptionMU += "<h1>" + imageData[0].title + "</h1>"; 
+			descriptionMU += "<p>" + imageData[0].desc + "</p>";
+			document.getElementById('descriptionWrapper').innerHTML = descriptionMU;
+
+			var editMU = "";
+			editMU += "<h2 style='margin-left: 20px'> Edit Details </h2>";
+			editMU += "<button id='closeEdit' onclick='hideEditWrapper()'> ✖ </button>";
+
+			//editMU += "<h4> URL </h4><input id='imageURL' placeholder='New URL'><br>";
+			//editMU += "<button onclick='editURL(" + imageData[0].id + "), updateURL()'> Enter new URL </button>";
+
+			editMU += "<h4> Title </h4><input id='title' val='" + imageData[0].title + "' style='width: 50%'>";
+			editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Save </button>";
+
+			editMU += "<h4> Description </h4><textarea id='desc' style='right: calc(100% - 20px); left: 0px; width: calc(100% - 40px); height: 30%' value='" + imageData[0].desc + "'> </textarea>";
+			editMU += "<br><br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Save </button>";
+			document.getElementById('editWrapper').innerHTML = editMU;
+
+
+
+			var mobileMU = "";
+			mobileMU += "<div id='topBar' style='position: fixed; width: 100%; height: 30px; left: 0px; right: 100%; top: 0px; background: black'></div>" +
+				"<div id='bottomBar' style='position: fixed; width: 100%; height: 30px; left: 0px; right: 100%; top: calc(100% - 31px); background: black; border-top: 1px solid white'></div>";
+			mobileMU += "<button id='back' onclick='goBack()'>↩</button>";
+			mobileMU += "<button id='deleteM' onclick='deleteImage(" + imageData[0].id + ")'> Delete </button>";
+			mobileMU += "<button id='detailsM' onclick='showDetails()'> Details </button>";
+			mobileMU += "<button id='editDetailsM' onclick='showEditWrapper()'> <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </button>";
+			mobileMU += "<button id='filtersM' onclick='showFiltersWrapper()'> <i class='fa fa-sliders' aria-hidden='true'></i> </button>";
+			mobileMU += "<button id='darkroomM' onclick='darkroom()'> <i class='fa fa-crop' aria-hidden='true'></i> </button>";
+			mobileMU += "<button id='saveAll' onclick='updateTitle(), editDesc(" + imageData[0].id + "), updateDesc(), hideEditWrapper()'> Save </button>";
+			mobileMU += "<button id='closeEditM' onclick='hideEditWrapper()'> Cancel </button>";
+			document.getElementById('mobile').innerHTML = mobileMU;
+		}
+
+
+		//for mobile
+		function showDetails() {
+			$("#filters, #editImage, #editDetails, #delete").css("display", "none");
+
+			if (document.getElementById("descriptionWrapper").style.display === 'none') {
+				document.getElementById("descriptionWrapper").style.display = 'block';
+				document.getElementById("editDetailsM").style.display = 'block';
+				$("#detailsM").css("color", "black");
+				$("#detailsM").css("background", "#9EE7FF");
+			} else {
+				document.getElementById("descriptionWrapper").style.display = 'none';
+				document.getElementById("editDetailsM").style.display = 'none';
+				$("#detailsM").css("color", "white");
+				$("#detailsM").css("background", "black");
+			}
+		}
+
+		function showEditWrapper(){
+			if ($(window).innerWidth() < 800) {
+				$("#detailsM, #deleteM, #descriptionWrapper, #editDetailsM, #darkroomM, #filtersM, #back, #closeEdit, #renameButton, #editDesc").hide();
+				$("#saveAll, #closeEditM").show();
+			}
+
+			$('#editWrapper').show();
+			$('#filtersWrapper').hide();
+			$("#editDetails").addClass("clicked");
+			$("#filters").removeClass("clicked");
+			document.getElementById("title").value = imageData[0].title;
+		    document.getElementById("desc").value = imageData[0].desc;
+		}
+
+		function hideEditWrapper(){
+			$('#editWrapper').hide();
+			$("#editDetails").removeClass("clicked");
+
+			if ($(window).innerWidth() < 800) {
+				$("#detailsM, #deleteM, #descriptionWrapper, #editDetailsM, #darkroomM, #filtersM, #back, #closeEdit").show();
+				$("#saveAll, #closeEditM").hide();
+			}
+		}
+
+		function rename(index){
+			var newTitle = document.getElementById("title").value;
+			var url = "./rename" + "?id=" + index + "&title=" + newTitle;
+			console.log(url);
+			loadFile(url, function(d){
+				imageData = JSON.parse(d);
+				formatList(imageData);
+			})
+		}
+
+		function updateTitle(){
+			var newTitle = document.getElementById("title").value;
+		    $('#descriptionWrapper h1').text(newTitle);
+		    $('#listWrapper a.active').text(newTitle);
+		    imageData[0].title = document.getElementById("title").value;
+		}
+
+		function editDesc(index){
+			var desc = document.getElementById("desc").value;
+			var url = "./editDesc" + "?id=" + index + "&desc=" + desc;
+			console.log(url);
+			loadFile(url, function(d){
+				imageData = JSON.parse(d);
+				formatDetails(imageData);
+			})
+		}
+
+		function updateDesc(){
+			var desc = document.getElementById("desc").value;
+		    $('#descriptionWrapper p').text(desc);
+		    imageData[0].desc = document.getElementById("desc").value;
+		}
+
+		function editURL(index){
+			var imageURL = document.getElementById("imageURL").value;
+			var url = "./editURL" + "?id=" + index + "&imageURL=" + imageURL;
+			console.log(url);
+			loadFile(url, function(d){
+				imageData = JSON.parse(d);
+				formatDetails(imageData);
+			})
+		}
+
+		function updateURL(){
+			var imageURL = document.getElementById("imageURL").value;
+		    $('#imageWrapper img, #listWrapper img.active').attr("src", imageURL);
+		}
+
+		function darkroom(){
+			hideEditWrapper();
+			hideFiltersWrapper();
+			$("#editImage").addClass("clicked");
+			$("#overlay").fadeIn().delay(6400);
+			$("#overlay").fadeOut();
+
+			if ($(window).innerWidth() < 800) {
+				$("#deleteM, #detailsM").hide();
+			}
+
+			$("#DRFrame, #cancel, #save").show();
+			document.getElementById("DRButtons").style.display = "block";
+
+			var url = document.getElementById("image").src;
+			document.getElementById("DRFrame").src = "./demo/index.html#" + url;
+			document.getElementById("DRWrapper").style.display = "block";
+
+		    sessionStorage.setItem("isEdited", "false");
+		}
+
+		function cancelDarkroom() {
+			$("#editImage").removeClass("clicked");
+			document.getElementById("DRFrame").src = "";
+			document.getElementById("DRWrapper").style.display = "none";
+			$("#DRWrapper, #cancel, #save").hide();
+
+			if ($(window).innerWidth() < 800) {
+				$("#deleteM, #detailsM").show();
+			}
+		}
+
+		var fileUploaded = function()
+		{
+		   var file = $('#theFileUploader').get(0);
+		   console.log(file, typeof file);
+		   var fileObj = $('#theFileUploader').get(0).files[0]
+		   var filename = fileObj.name;
+		   var ext = filename.split(".");
+		   ext = ext[ext.length-1];
+		   console.log(ext);
+		   var fd = new FormData();
+		   var fileInput = "s3Upload_" + new Date().getTime().toString() + "." + ext;
+		   fd.append('fileInput', fileInput);
+		   fd.append('input', file.files[0]);
+		   fd.append('date', (new Date()).toString());
+		    //fd.append('data', data);
+		    var xhr = new XMLHttpRequest();
+		    xhr.onreadystatechange = function(e) {  
+		      if (xhr.readyState != 4) { return; }
+
+		       //document.getElementById("preview").src = "https://s3-us-west-2.amazonaws.com/lindanguyename470/" + fileInput;
+				var imageMU = "";
+				imageMU += "<img id='image' src='https://s3-us-west-2.amazonaws.com/lindanguyename470/" + fileInput + "'>";
+				document.getElementById('imageWrapper').innerHTML = imageMU;
+
+
+				var imageURL = "https://s3-us-west-2.amazonaws.com/lindanguyename470/" + fileInput;
+				var id = new Date().getTime();
+
+				var url = "./addImage" + "?id=" + id + "&imageURL=" + imageURL + "&title=Untitled&desc=No description&blur=0&contrast=100&brightness=100&hue=0&saturate=100&invert=0&sepia=0&grayscale=0";
+				console.log(url);
+				loadFile(url, function(d){
+					imageData = JSON.parse(d);
+					formatList(imageData);
+				    itemSelected(imageData.length);
+				    $("#listWrapper a, #listWrapper img").removeClass('active');
+					$("#listWrapper a:nth-of-type(" + (imageData.length) + "), #listWrapper img:nth-of-type(" + (imageData.length) + ")").addClass('active');
+				})
+				displayImage(id);
+				cancelDarkroom();
+				hideFiltersWrapper();
+				hideEditWrapper();
+		    };
+		    xhr.open("POST", "/uploadFile", true);
+		    xhr.send(fd);
+		}
+
+		function saveImageEdit(){
+		  if(sessionStorage.getItem("isEdited") == "true"){
+		     var fd = new FormData();
+		     var fileInput = document.getElementById("image").src.split("lindanguyename470/")[1];
+		    // fileInput = fileInput.split("?")[0];
+		     fd.append('fileInput', fileInput);
+		     fd.append('date', (new Date()).toString());
+		     fd.append('data', sessionStorage.getItem("editedImage"));
+		      //fd.append('data', data);
+		      var xhr = new XMLHttpRequest();
+		      xhr.onreadystatechange = function(e) {  
+		        if (xhr.readyState != 4) { return; }
+		      
+		        //cancelDarkroom();  
+		        /*var imageMU = "";
+				imageMU += "<img id='image' src='https://s3-us-west-2.amazonaws.com/lindanguyename470/" + fileInput + ">";
+				document.getElementById('imageWrapper').innerHTML = imageMU;*/
+				var url = "./displayImage" + "?id=" + imageData[0].id + "&blur=" + blur + "&contrast=" + contrast + "&brightness=" + brightness + "&hue=" + hue + "&saturate=" + saturate + "&invert=" + invert + "&sepia=" + sepia + "&grayscale=" + grayscale;
+				console.log(url);
+				loadFile(url, function(d){
+					imageData = JSON.parse(d);
+					formatDetails(imageData);
+				})
+
+				cancelDarkroom();
+				 $('#listWrapper img.active').attr("src", "https://s3-us-west-2.amazonaws.com/lindanguyename470/" + fileInput);
+		      };
+		      xhr.open("POST", "/uploadImage", true);
+		      xhr.send(fd);
+		  }
+		}
+
+		function showFiltersWrapper() {
+			if($(window).innerWidth() < 800) {
+				$("#deleteM, #detailsM").hide();
+				$("#bottomBar").css("border-top", "none");
+				$("#filtersM").css("color", "black");
+				$("#filtersM").css("background", "#9EE7FF");
+			}
+
+			$("#filtersWrapper").show();
+			$('#editWrapper').hide();
+			$("#filters").addClass("clicked");
+			$("#editDetails").removeClass("clicked");
+
+			document.getElementById("blur").value = imageData[0].blur;
+			document.getElementById("contrast").value = imageData[0].contrast;
+			document.getElementById("invert").value = imageData[0].invert;
+			document.getElementById("sepia").value = imageData[0].sepia;
+			document.getElementById("brightness").value = imageData[0].brightness;
+			document.getElementById("saturate").value = imageData[0].saturate;
+			document.getElementById("hue").value = imageData[0].hue;
+			document.getElementById("grayscale").value = imageData[0].grayscale;
+
+			var brightness = document.getElementById("brightness").value + "%";
+				document.getElementById("brightnessVal").innerHTML = brightness;
+			var saturate = document.getElementById("saturate").value + "%";
+				document.getElementById("saturateVal").innerHTML = saturate;
+			var contrast = document.getElementById("contrast").value + "%";
+				document.getElementById("contrastVal").innerHTML = contrast;
+			var blur = document.getElementById("blur").value + "px";
+				document.getElementById("blurVal").innerHTML = blur;	      
+			var sepia = document.getElementById("sepia").value + "%";
+				document.getElementById("sepiaVal").innerHTML = sepia;	      
+			var grayscale = document.getElementById("grayscale").value + "%";
+				document.getElementById("grayscaleVal").innerHTML = grayscale;
+			var invert = document.getElementById("invert").value + "%";
+				document.getElementById("invertVal").innerHTML = invert;
+			var hue = document.getElementById("hue").value + "°";
+				document.getElementById("hueVal").innerHTML = hue;
+		}
+
+		function hideFiltersWrapper() {
+			$("#filtersWrapper").hide();
+			$("#filters").removeClass("clicked");
+			if ($(window).innerWidth() < 800) {
+				$("#deleteM, #detailsM").show();
+			}
+		}
+
+		function saveFilter(index){
+			var blur = document.getElementById("blur").value;
+			var saturate = document.getElementById("saturate").value;
+			var brightness = document.getElementById("brightness").value;
+			var contrast = document.getElementById("contrast").value;
+			var invert = document.getElementById("invert").value;
+			var hue = document.getElementById("hue").value;
+			var grayscale = document.getElementById("grayscale").value;
+			var sepia = document.getElementById("sepia").value;
+			var filter = "saturate(" + saturate + "%)" + " brightness(" + brightness + "%)" + " contrast(" + contrast + "%)" + " invert(" + invert + "%)" + " hue-rotate(" + hue + "deg)" + " sepia(" + sepia + "%)" + " grayscale(" + grayscale + "%)" + " blur(" + blur + "px)";
+
+			var url = "./saveFilter" + "?id=" + imageData[0].id + "&blur=" + blur + "&contrast=" + contrast + "&brightness=" + brightness + "&hue=" + hue + "&saturate=" + saturate + "&invert=" + invert + "&sepia=" + sepia + "&grayscale=" + grayscale;
+			console.log(url);
+			loadFile(url, function(d){
+				imageData = JSON.parse(d);
+				formatDetails(imageData);
+			})
+
+			hideFiltersWrapper();
+			$('#listWrapper img.active').css("filter", filter);
+
+			imageData[0].blur = blur;
+			imageData[0].contrast = contrast;
+			imageData[0].invert = invert;
+		    imageData[0].sepia = sepia;
+		    imageData[0].brightness = brightness;
+			imageData[0].saturate = saturate;
+			imageData[0].hue = hue;
+			imageData[0].grayscale = grayscale;
+
+			if ($(window).innerWidth() < 800) {
+				$("#deleteM, #detailsM").show();
+			}
+		}
+
+		function updateFilter() {
+		  var filter = "saturate(" + document.getElementById("saturate").value + "%)" +
+	          " brightness(" + document.getElementById("brightness").value + "%)" + 
+	          " contrast(" + document.getElementById("contrast").value + "%)" +
+	          " invert(" + document.getElementById("invert").value + "%)" +
+	          " hue-rotate(" + document.getElementById("hue").value + "deg)" +
+	          " sepia(" + document.getElementById("sepia").value + "%)" +
+	          " grayscale(" + document.getElementById("grayscale").value + "%)" +
+	          " blur(" + document.getElementById("blur").value + "px)";
+			$("#image").css("filter", filter);
+
+			$(document).on('input', '#brightness', function() {
+			    $('#brightnessVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#saturate', function() {
+			    $('#saturateVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#invert', function() {
+			    $('#invertVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#contrast', function() {
+			    $('#contrastVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#hue', function() {
+			    $('#hueVal').html( $(this).val() + "°");
+			});
+			$(document).on('input', '#sepia', function() {
+			    $('#sepiaVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#grayscale', function() {
+			    $('#grayscaleVal').html( $(this).val() + "%");
+			});
+			$(document).on('input', '#blur', function() {
+			    $('#blurVal').html( $(this).val() + "px");
+			});
+
+			var brightness = document.getElementById("brightness").value + "%";
+				document.getElementById("brightnessVal").innerHTML = brightness;
+			var saturate = document.getElementById("saturate").value + "%";
+				document.getElementById("saturateVal").innerHTML = saturate;
+			var contrast = document.getElementById("contrast").value + "%";
+				document.getElementById("contrastVal").innerHTML = contrast;
+			var blur = document.getElementById("blur").value + "px";
+				document.getElementById("blurVal").innerHTML = blur;	      
+			var sepia = document.getElementById("sepia").value + "%";
+				document.getElementById("sepiaVal").innerHTML = sepia;	      
+			var grayscale = document.getElementById("grayscale").value + "%";
+				document.getElementById("grayscaleVal").innerHTML = grayscale;
+			var invert = document.getElementById("invert").value + "%";
+				document.getElementById("invertVal").innerHTML = invert;
+			var hue = document.getElementById("hue").value + "°";
+				document.getElementById("hueVal").innerHTML = hue;
+	    }
+
+	    function cancelFilter() {
+	    	if ($(window).innerWidth() < 800) {
+	    		$("#filtersM").css("color", "white");
+				$("#filtersM").css("background", "black");
+			}
+			hideFiltersWrapper();
+	        $("#image").css("filter", "saturate(" + imageData[0].saturate + "%)" +
+	          " brightness(" + imageData[0].brightness + "%)" + 
+	          " contrast(" + imageData[0].contrast + "%)" +
+	          " invert(" + imageData[0].invert + "%)" +
+	          " hue-rotate(" + imageData[0].hue + "deg)" +
+	          " sepia(" + imageData[0].sepia + "%)" +
+	          " grayscale(" + imageData[0].grayscale + "%)" +
+	          " blur(" + imageData[0].blur + "px)");
+	    }
+
+	    function goBack() {
+	    	$("#imageWrapper, #descriptionWrapper, #mobile").hide();
+	    	$("#listWrapper, #header").show();
+	    	$("#listWrapper a").removeClass("active");
+	    	document.getElementById("image").src = "";
+	    } 
+	</script>
+</head>
+
+<body onload="getList()" bgcolor="#78A0AD">
+	<div id="header">
+		<h3 style='color: white; margin-top: 0'>My Images</h3>
+		<button class="fileUpload" id='addButton'>
+		    <span> + </span>
+		    <input type='file' id='theFileUploader' class='upload' onchange='fileUploaded()'>
+	    </button>
+	</div>
+
+	<div id='listWrapper'> </div>
+	<div id='imageWrapper'> </div>
+	<div id='descriptionWrapper'> </div>
+	<div id='editWrapper'> </div>
+
+
+
+	<div id="mobile"> 	</div>
+
+
+
+	<div id='DRWrapper'> 
+	    <iframe crossorigin='anonymous' id='DRFrame'> </iframe>
+    </div>
+    <div id='DRButtons' style='position: fixed;'>
+        <button id='cancel' onclick='cancelDarkroom()'> Cancel </button>
+	    <button id='save' onclick='saveImageEdit()'> Save </button>
+    </div>
+
+	<div id='overlay'>
+		<div id='spinner' class='fa fa-repeat aniSpin'>
+		</div>
+	</div>
+
+	 <div id="filtersWrapper"> 
+		<button id='cancelFilter' onclick='cancelFilter()'> Cancel </button>
+		<button id='saveFilter' style="float: right" onclick='saveFilter()'> Save </button>
+
+		<br><br>Brightness <div style='float: right' id="brightnessVal"></div><br>
+			<input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()"> 
+		<br><br>Contrast <div style='float: right' id="contrastVal"></div><br>
+			<input type="range" id="contrast" min="0" max="200" value="100" onchange="updateFilter()">
+		<br><br>Saturation <div style='float: right' id="saturateVal"></div><br>
+			<input type="range" id="saturate" min="0" max="200" value="100" onchange="updateFilter()">
+		<br><br>Hue <div style='float: right' id="hueVal"></div><br>
+			<input type="range" id="hue" min="0" max="360" value="0" onchange="updateFilter()">
+		<br><br>Invert <div style='float: right' id="invertVal"></div><br>
+			<input type="range" id="invert" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Grayscale <div style='float: right' id="grayscaleVal"></div><br>
+			<input type="range" id="grayscale" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Sepia <div style='float: right' id="sepiaVal"></div><br>
+			<input type="range" id="sepia" min="0" max="100" value="0" onchange="updateFilter()">
+		<br><br>Blur <div style='float: right' id="blurVal"></div><br>
+			<input type="range" id="blur" min="0" max="100" value="0" onchange="updateFilter()">
+    </div>
+</body>
+</html>

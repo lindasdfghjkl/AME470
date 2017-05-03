@@ -107,7 +107,7 @@ app.get("/saveFilter", function (req, res) {
     var sepia = req.query.sepia.toString();
     var grayscale = req.query.grayscale.toString();
 
-    db.collection("data").update({id: id}, { $set: { blur: blur, saturate: saturate, brightness, brightness, hue, hue, contrast: contrast, invert: invert, grayscale: grayscale, sepia: sepia} }).toArray( function(err, result) {
+    db.collection("data").update({id: id}, { $set: {blur: blur, saturate: saturate, brightness, brightness, hue, hue, contrast: contrast, invert: invert, grayscale: grayscale, sepia: sepia} }).toArray( function(err, result) {
         res.send(JSON.stringify(result));
     });
 });

@@ -110,6 +110,7 @@
 
 		#listWrapper a.active{
 			color: #005E7D;
+			font-weight: bolder;
 		}
 
 		#imageWrapper{
@@ -186,7 +187,7 @@
 
 		#editWrapper {
 			display: none;
-			background-color: rgba(0, 0, 0, .5);
+			background-color: rgba(45, 45, 45, .7);
 			position: fixed;
 			top: 0px;
 			bottom: 70%;
@@ -217,13 +218,14 @@
 			background: none;
 		}
 
-		#renameButton, #editDesc {
+		#editDesc {
 			color: black;
 			border: none;
 			position: absolute;
-			left: calc(100% - 75px);
+			left: calc(100% - 80px);
 			padding: 5px;
 			width: 50px;
+			bottom: (100% - 20px);
 		}
 
 		#desc{
@@ -243,7 +245,7 @@
 			padding: 10px 10px;
 		}
 
-		#editImage{
+		#editDarkroom{
 			margin-top: 20px;
 			float: right;
 			padding: 10px 10px;
@@ -339,7 +341,7 @@
 		}
 
 		#filtersWrapper {
-			background-color: rgba(0, 0, 0, .7);
+			background-color: rgba(45, 45, 45, .7);
 			position: fixed;
 			top: 0px;
 			bottom: 70%;
@@ -358,12 +360,25 @@
 			color: white;
 		}
 
-		#saveFilter, #cancelFilter {
+		#saveFilter {
 			color: black;
 			border: none;
 			padding-left: 10px;
 			padding-right: 10px;
 			height: 30px;
+			float: right;
+		}
+
+		#cancelFilter {
+			position: fixed;
+			top: 10px;
+			right: calc(100% - 40px);
+			left: calc(100% - 50px);
+			float: right;
+			font-size: 190%;
+			border: none;
+			color: white;
+			background: none;
 		}
 
 		#filtersWrapper button:hover{
@@ -393,6 +408,10 @@
 		    margin-top: -4px;
 		}
 
+		#presets {
+			width: 50%;
+		}
+
 		#mobile {
 			display: none;
 			position: fixed;
@@ -408,7 +427,7 @@
 				top: 0px;
 				float: right;
 				color: white;
-				background-color: black;
+				background-color: transparent;
 				border: none;
 				font-size: 120%;
 				padding: 7px;
@@ -417,7 +436,7 @@
 			#darkroomM {
 				position: relative;
 				float: right;
-				background-color: black;
+				background-color: transparent;
 				color: white;
 				border: none;
 				font-size: 120%;
@@ -441,14 +460,14 @@
 				left: 0px;
 				right: 100%;
 				width: 100%;
-				top: 30px;
+				top: 35px;
 				height: calc(100% - 60px);
 			}
 
 			#descriptionWrapper {
 				position: fixed;
 				display: none;
-				background-color: rgba(0, 0, 0, 0.75);
+				background-color: rgba(45, 45, 45, 0.75);
 				color: white;
 
 				left: 0px;
@@ -471,29 +490,32 @@
 				color: white;
 				height: 30px;
 				font-size: 175%;
-				background-color: black;
+				background-color: transparent;
 				border: none;
 			}
 
 			#deleteM {
 				position: fixed;
 				right: 100%;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				left: calc(100% - 50px);
 				color: white;
 				background-color: black;
 				border: none;
-				height: 30px;
+				height: 35px;
 			}
 
 			#detailsM {
 				position: fixed;
 				left: 0px;
-				top: calc(100% - 30px);
+				top: calc(100% - 36px);
 				color: white;
 				background-color: black;
-				border: none;
-				height: 30px;
+				border-top: 1px solid white; 
+				border-right: none;
+				border-left: none;
+				border-bottom: none;
+				height: 36px;
 			}
 
 			#editDetailsM {
@@ -516,35 +538,31 @@
 				left: 0%;
 				right: 100%;
 				width: 100%;
-				bottom: calc(100% - 35px);
-				height: calc(100% - 35px); 
+				bottom: calc(100% - 22.5px);
+				height: calc(100% - 22.5px); 
 				overflow: scroll;
 				border: none;
 			}
 
 			#cancel {
-				margin-top: -5px;
-				padding: 0;
 				position: fixed;
 				left: 0px;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				color: white;
 				background-color: transparent;
 				border-top: 1px solid white;
-				height: 30px;
+				height: 35px;
 			}
 
 			#save {
-				margin-top: -5px;
-				padding-top: -20px;
 				position: fixed;
 				right: 100%;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				left: calc(100% - 50px);
 				color: white;
 				background-color: transparent;
 				border-top: 1px solid white;
-				height: 30px;
+				height: 35px;
 			}
 
 			#filtersWrapper {
@@ -553,30 +571,30 @@
 				left: 0px;
 				right: calc(100% - 40px);
 				top: 60%;
-				bottom: calc(100% - 40px);
-				height: calc(40% - 70px);
+				bottom: calc(100% - 50px);
+				height: calc(40% - 75px);
 				color: white;
 			}
 
 			#saveFilter {
 				position: fixed;
 				right: 100%;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				left: calc(100% - 50px);
 				color: white;
 				background-color: black;
 				border: none;
-				height: 30px;
+				height: 35px;
 			}
 
 			#cancelFilter {
 				position: fixed;
 				left: 0px;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				color: white;
 				background-color: black;
 				border: none;
-				height: 30px;
+				height: 35px;
 			}
 
 			#editWrapper {
@@ -585,8 +603,8 @@
 				right: 100%;
 				width: calc(100% - 20px);
 				top: 0px;
-				bottom: calc(100% - 60px);
-				height: calc(100% - 60px);
+				bottom: calc(100% - 56px);
+				height: calc(100% - 56px);
 				z-index: 1;
 			}
 
@@ -599,23 +617,24 @@
 				display: none;
 				position: fixed;
 				right: 100%;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				left: calc(100% - 50px);
 				color: white;
 				background-color: black;
 				border: none;
-				height: 30px;
+				height: 35px;
+				float: none;
 			}
 
 			#closeEditM {
 				display: none;
 				position: fixed;
 				left: 0px;
-				top: calc(100% - 30px);
+				top: calc(100% - 35px);
 				color: white;
 				background-color: black;
 				border: none;
-				height: 30px;
+				height: 35px;
 			}
 		}
 	</style>
@@ -700,26 +719,6 @@
 			})
 		}*/
 
-		function deleteImage(index){
-			var flag = confirm("Are you sure you want to delete this image?");
-
-			if (flag){
-				var url = "./deleteImage" + "?id=" + index;
-				console.log(url);
-				loadFile(url, function(d){
-					var data = JSON.parse(d);
-					formatList(data);
-
-			        if ($(window).innerWidth() >= 800) {
-						itemSelected(data.length - 1);
-				        displayImage(data[data.length - 1].id);
-			        } else {
-			        	goBack();
-			        }
-				})
-			}
-		}
-
 		function formatList(list){
 			var markup = "";
 
@@ -743,10 +742,33 @@
 			$("#listWrapper a:nth-of-type(" + (index+1) + "), #listWrapper img:nth-of-type(" + (index+1) + ")").addClass('active');
 		}
 
+		function deleteImage(index){
+			var flag = confirm("Are you sure you want to delete this image?");
+			
+			var data = [];
+			if (flag){
+				var url = "./deleteImage" + "?id=" + index;
+				console.log(url);
+				loadFile(url, function(d){
+					data = JSON.parse(d);
+					formatList(data);
+					$("#filtersWrapper, #DRFrame, #save, #cancel, #DRButtons, #editWrapper").hide();
+					$("#editDarkroom, #filters, #editDetails").removeClass("active");
+				})
+			}
+
+			if ($(window).innerWidth() < 800) {
+				goBack();
+			}
+
+			if (data.length == 0) {
+				document.getElementById("image").src = "";
+				document.getElementById("descriptionWrapper").innerHTML = "";
+			}
+		}
+
 		var imageData;
 		function displayImage(index){
-			$("#filtersWrapper, #editWrapper").hide();
-
 			var url = "./displayImage" + "?id=" + index + "&blur=" + blur + "&contrast=" + contrast + "&brightness=" + brightness + "&hue=" + hue + "&saturate=" + saturate + "&invert=" + invert + "&sepia=" + sepia + "&grayscale=" + grayscale;
 			console.log(url);
 			loadFile(url, function(d){
@@ -754,7 +776,16 @@
 				formatDetails(imageData);
 			})
 
+			if (document.getElementById("DRWrapper").style.display == "block") {
+				cancelDarkroom();
+			} 
+			$("#filtersWrapper, #editWrapper, #DRWrapper, #DRButtons").hide();
+			if ($(window).innerWidth() >= 800) {
+				$("#descriptionWrapper").show();
+			}
+
 			if ($(window).innerWidth() < 800) {
+				$("#descriptionWrapper").hide();
 				$("#header").hide();
 				$("#listWrapper").hide();
 				$("#imageWrapper").show();
@@ -780,7 +811,7 @@
 			descriptionMU += "<button id='delete' onclick='deleteImage(" + imageData[0].id + ")'> Delete </button>";
 			descriptionMU += "<button id='editDetails' onclick='showEditWrapper()'> Edit Details </button>";
 			descriptionMU += "<button id='filters' onclick='showFiltersWrapper()'> Filter </button>";
-			descriptionMU += "<button id='editImage' onclick='darkroom()'> Rotate/Crop </button>";
+			descriptionMU += "<button id='editDarkroom' onclick='darkroom()'> Rotate/Crop </button>";
 
 			descriptionMU += "<h1>" + imageData[0].title + "</h1>"; 
 			descriptionMU += "<p>" + imageData[0].desc + "</p>";
@@ -793,19 +824,19 @@
 			//editMU += "<h4> URL </h4><input id='imageURL' placeholder='New URL'><br>";
 			//editMU += "<button onclick='editURL(" + imageData[0].id + "), updateURL()'> Enter new URL </button>";
 
-			editMU += "<h4> Title </h4><input id='title' val='" + imageData[0].title + "' style='width: 50%'>";
-			editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Save </button>";
+			editMU += "<h4> Title </h4><input id='title' val='" + imageData[0].title + "' style='width: calc(100% - 40px)'>";
+			//editMU += "<button id='renameButton' onclick='rename(" + imageData[0].id + "), updateTitle()'> Save </button>";
 
-			editMU += "<h4> Description </h4><textarea id='desc' style='right: calc(100% - 20px); left: 0px; width: calc(100% - 40px); height: 30%' value='" + imageData[0].desc + "'> </textarea>";
-			editMU += "<br><br><button id='editDesc' onclick='editDesc(" + imageData[0].id + "), updateDesc()'> Save </button>";
+			editMU += "<h4> Description </h4><textarea id='desc' style='right: calc(100% - 40px); left: 0px; width: calc(100% - 45px); height: 30%' value='" + imageData[0].desc + "'> </textarea>";
+			editMU += "<br><br><button id='editDesc' onclick='rename(" + imageData[0].id + "), updateTitle(), editDesc(" + imageData[0].id + "), updateDesc()'> Save </button>";
 			document.getElementById('editWrapper').innerHTML = editMU;
 
 
 
 			var mobileMU = "";
-			mobileMU += "<div id='topBar' style='position: fixed; width: 100%; height: 30px; left: 0px; right: 100%; top: 0px; background: black'></div>" +
-				"<div id='bottomBar' style='position: fixed; width: 100%; height: 30px; left: 0px; right: 100%; top: calc(100% - 31px); background: black; border-top: 1px solid white'></div>";
-			mobileMU += "<button id='back' onclick='goBack()'>↩</button>";
+			mobileMU += "<div id='topBar' style='position: fixed; width: 100%; height: 36px; left: 0px; right: 100%; top: 0px; background: black; border-bottom: 1px solid white'></div>" +
+				"<div id='bottomBar' style='position: fixed; width: 100%; height: 35px; left: 0px; right: 100%; top: calc(100% - 36px); background: black; border-top: 1px solid white'></div>";
+			mobileMU += "<button id='back' onclick='goBack()'> ↩ </button>";
 			mobileMU += "<button id='deleteM' onclick='deleteImage(" + imageData[0].id + ")'> Delete </button>";
 			mobileMU += "<button id='detailsM' onclick='showDetails()'> Details </button>";
 			mobileMU += "<button id='editDetailsM' onclick='showEditWrapper()'> <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </button>";
@@ -819,18 +850,20 @@
 
 		//for mobile
 		function showDetails() {
-			$("#filters, #editImage, #editDetails, #delete").css("display", "none");
+			$("#filters, #editDarkroom, #editDetails, #delete").css("display", "none");
 
 			if (document.getElementById("descriptionWrapper").style.display === 'none') {
 				document.getElementById("descriptionWrapper").style.display = 'block';
 				document.getElementById("editDetailsM").style.display = 'block';
 				$("#detailsM").css("color", "black");
 				$("#detailsM").css("background", "#9EE7FF");
+				$("#detailsM").css("border-top-color", "#9EE7FF");
 			} else {
 				document.getElementById("descriptionWrapper").style.display = 'none';
 				document.getElementById("editDetailsM").style.display = 'none';
 				$("#detailsM").css("color", "white");
 				$("#detailsM").css("background", "black");
+				$("#detailsM").css("border-top-color", "white");
 			}
 		}
 
@@ -838,6 +871,7 @@
 			if ($(window).innerWidth() < 800) {
 				$("#detailsM, #deleteM, #descriptionWrapper, #editDetailsM, #darkroomM, #filtersM, #back, #closeEdit, #renameButton, #editDesc").hide();
 				$("#saveAll, #closeEditM").show();
+				$("#topBar").css("border-bottom", "none");
 			}
 
 			$('#editWrapper').show();
@@ -855,6 +889,7 @@
 			if ($(window).innerWidth() < 800) {
 				$("#detailsM, #deleteM, #descriptionWrapper, #editDetailsM, #darkroomM, #filtersM, #back, #closeEdit").show();
 				$("#saveAll, #closeEditM").hide();
+				$("#topBar").css("border-bottom", "1px solid white");
 			}
 		}
 
@@ -907,14 +942,23 @@
 		}
 
 		function darkroom(){
+			$("#detailsM").css("background", "black").css("color", "white").css("border-top-color", "white");
+			$("#filtersM").css("background", "transparent").css("color", "white");
+			$("#descriptionWrapper").hide();
+			if($(window).innerWidth() >= 800) {
+				$("#DRFrame").css("height", "100%");
+			} else {
+				$("#DRFrame").css("height", "calc(100% - 22.5px)");	
+			}
+
 			hideEditWrapper();
 			hideFiltersWrapper();
-			$("#editImage").addClass("clicked");
-			$("#overlay").fadeIn().delay(6400);
+			$("#editDarkroom").addClass("clicked");
+			$("#overlay").fadeIn().delay(6000);
 			$("#overlay").fadeOut();
 
 			if ($(window).innerWidth() < 800) {
-				$("#deleteM, #detailsM").hide();
+				$("#deleteM, #detailsM, #editDetailsM, #descriptionWrapper").hide();
 			}
 
 			$("#DRFrame, #cancel, #save").show();
@@ -928,13 +972,18 @@
 		}
 
 		function cancelDarkroom() {
-			$("#editImage").removeClass("clicked");
+			$("#editDarkroom").removeClass("clicked");
 			document.getElementById("DRFrame").src = "";
-			document.getElementById("DRWrapper").style.display = "none";
+			//document.getElementById("DRWrapper").style.display = "none";
 			$("#DRWrapper, #cancel, #save").hide();
+			$("#DRFrame").css("height", "70%");
+			if ($(window).innerWidth() >= 800) {
+				$("#descriptionWrapper").show();
+			}
 
 			if ($(window).innerWidth() < 800) {
 				$("#deleteM, #detailsM").show();
+				$("#descriptionWrapper").hide();
 			}
 		}
 
@@ -969,7 +1018,7 @@
 				var url = "./addImage" + "?id=" + id + "&imageURL=" + imageURL + "&title=Untitled&desc=No description&blur=0&contrast=100&brightness=100&hue=0&saturate=100&invert=0&sepia=0&grayscale=0";
 				console.log(url);
 				loadFile(url, function(d){
-					imageData = JSON.parse(d);
+					var imageData = JSON.parse(d);
 					formatList(imageData);
 				    itemSelected(imageData.length);
 				    $("#listWrapper a, #listWrapper img").removeClass('active');
@@ -979,6 +1028,9 @@
 				cancelDarkroom();
 				hideFiltersWrapper();
 				hideEditWrapper();
+				if ($(window).innerWidth() < 800) {
+					$("#descriptionWrapper").hide();
+				}
 		    };
 		    xhr.open("POST", "/uploadFile", true);
 		    xhr.send(fd);
@@ -996,7 +1048,6 @@
 		      var xhr = new XMLHttpRequest();
 		      xhr.onreadystatechange = function(e) {  
 		        if (xhr.readyState != 4) { return; }
-		      
 		        //cancelDarkroom();  
 		        /*var imageMU = "";
 				imageMU += "<img id='image' src='https://s3-us-west-2.amazonaws.com/lindanguyename470/" + fileInput + ">";
@@ -1018,10 +1069,14 @@
 
 		function showFiltersWrapper() {
 			if($(window).innerWidth() < 800) {
-				$("#deleteM, #detailsM").hide();
+				$("#deleteM, #detailsM, #descriptionWrapper, #editDetailsM").hide();
+				$("#darkroomM, #detailsM").removeClass("clicked");
 				$("#bottomBar").css("border-top", "none");
 				$("#filtersM").css("color", "black");
 				$("#filtersM").css("background", "#9EE7FF");
+
+			    $('#cancelFilter').html("Cancel");
+			    $('#cancelFilter').css("font-size", "100%");
 			}
 
 			$("#filtersWrapper").show();
@@ -1061,8 +1116,28 @@
 			$("#filters").removeClass("clicked");
 			if ($(window).innerWidth() < 800) {
 				$("#deleteM, #detailsM").show();
+				$("#bottomBar").css("border-top", "1px solid white");
+				$("#darkroomM, #detailsM").css("background", "transparent").css("color", "white");
+				$("#detailsM").css("border-top-color", "white");
 			}
 		}
+
+	    function cancelFilter() {
+	    	if ($(window).innerWidth() < 800) {
+	    		$("#filtersM").css("color", "white").css("background", "transparent");
+	    		$("#darkroomM").css("color", "white").css("background", "transparent");
+				//$("#darkroomM, #detailsM, #filtersM").removeClass("clicked");
+			}
+			hideFiltersWrapper();
+	        $("#image").css("filter", "saturate(" + imageData[0].saturate + "%)" +
+	          " brightness(" + imageData[0].brightness + "%)" + 
+	          " contrast(" + imageData[0].contrast + "%)" +
+	          " invert(" + imageData[0].invert + "%)" +
+	          " hue-rotate(" + imageData[0].hue + "deg)" +
+	          " sepia(" + imageData[0].sepia + "%)" +
+	          " grayscale(" + imageData[0].grayscale + "%)" +
+	          " blur(" + imageData[0].blur + "px)");
+	    }
 
 		function saveFilter(index){
 			var blur = document.getElementById("blur").value;
@@ -1096,19 +1171,129 @@
 
 			if ($(window).innerWidth() < 800) {
 				$("#deleteM, #detailsM").show();
+				$("#filtersM").css("background-color", "transparent").css("color", "white");
+				$("#bottomBar").css("border-top", "1px solid white");
 			}
 		}
 
-		function updateFilter() {
-		  var filter = "saturate(" + document.getElementById("saturate").value + "%)" +
-	          " brightness(" + document.getElementById("brightness").value + "%)" + 
-	          " contrast(" + document.getElementById("contrast").value + "%)" +
-	          " invert(" + document.getElementById("invert").value + "%)" +
-	          " hue-rotate(" + document.getElementById("hue").value + "deg)" +
-	          " sepia(" + document.getElementById("sepia").value + "%)" +
-	          " grayscale(" + document.getElementById("grayscale").value + "%)" +
-	          " blur(" + document.getElementById("blur").value + "px)";
+		function preset() {
+			var filter;
+				if (document.getElementById("presets").value == "none") {
+				filter = "saturate(100%) + brightness(100%) contrast(100%) invert(0%) hue-rotate(0deg) sepia(0%) grayscale(0%) blur(0px)";
+
+			    document.getElementById("brightness").value = 100;
+				document.getElementById("saturate").value = 100;
+				document.getElementById("contrast").value = 100;
+				document.getElementById("blur").value = 0;
+				document.getElementById("sepia").value = 0;
+				document.getElementById("grayscale").value = 0;
+				document.getElementById("invert").value = 0;
+				document.getElementById("hue").value = 0;
+
+			    $('#brightnessVal').html( 100 + "%");
+			    $('#saturateVal').html(100 + "%");
+			    $('#invertVal').html(0 + "%");
+			    $('#contrastVal').html(100+ "%");
+			    $('#hueVal').html(0 + "°");
+			    $('#sepiaVal').html(0+ "%");
+			    $('#grayscaleVal').html(0 + "%");
+			    $('#blurVal').html(0 + "px");
+			} 
+			else if (document.getElementById("presets").value == "A") {
+				filter = "saturate(10%) + brightness(90%) contrast(110%) invert(0%) hue-rotate(140deg) sepia(30%) grayscale(0%) blur(0px)";
+
+			    document.getElementById("brightness").value = 90;
+				document.getElementById("saturate").value = 10;
+				document.getElementById("contrast").value = 110;
+				document.getElementById("blur").value = 0;
+				document.getElementById("sepia").value = 30;
+				document.getElementById("grayscale").value = 0;
+				document.getElementById("invert").value = 0;
+				document.getElementById("hue").value = 140;
+
+			    $('#brightnessVal').html( 90 + "%");
+			    $('#saturateVal').html(10 + "%");
+			    $('#invertVal').html(0 + "%");
+			    $('#contrastVal').html(110+ "%");
+			    $('#hueVal').html(140 + "°");
+			    $('#sepiaVal').html(30+ "%");
+			    $('#grayscaleVal').html(0 + "%");
+			    $('#blurVal').html(0 + "px");
+			} 
+			else if (document.getElementById("presets").value == "B") {
+				filter = "saturate(150%) + brightness(120%) contrast(90%) invert(0%) hue-rotate(10deg) sepia(0%) grayscale(0%) blur(0px)";
+
+			    document.getElementById("brightness").value = 120;
+				document.getElementById("saturate").value = 150;
+				document.getElementById("contrast").value = 90;
+				document.getElementById("blur").value = 0;
+				document.getElementById("sepia").value = 0;
+				document.getElementById("grayscale").value = 0;
+				document.getElementById("invert").value = 0;
+				document.getElementById("hue").value = 10;
+
+			    $('#brightnessVal').html(120 + "%");
+			    $('#saturateVal').html(150 + "%");
+			    $('#invertVal').html(0 + "%");
+			    $('#contrastVal').html(90 + "%");
+			    $('#hueVal').html(10 + "°");
+			    $('#sepiaVal').html(0 + "%");
+			    $('#grayscaleVal').html(0 + "%");
+			    $('#blurVal').html(0 + "px");
+			} 
+			else if (document.getElementById("presets").value == "C") {
+				filter = "saturate(120%) + brightness(110%) contrast(110%) invert(25%) hue-rotate(340deg) sepia(10%) grayscale(0%) blur(0px)";
+
+			    document.getElementById("brightness").value = 110;
+				document.getElementById("saturate").value = 120;
+				document.getElementById("contrast").value = 110;
+				document.getElementById("blur").value = 0;
+				document.getElementById("sepia").value = 10;
+				document.getElementById("grayscale").value = 0;
+				document.getElementById("invert").value = 25;
+				document.getElementById("hue").value = 340;
+
+			    $('#brightnessVal').html(110 + "%");
+			    $('#saturateVal').html(120 + "%");
+			    $('#invertVal').html(25 + "%");
+			    $('#contrastVal').html(110 + "%");
+			    $('#hueVal').html(340 + "°");
+			    $('#sepiaVal').html(10 + "%");
+			    $('#grayscaleVal').html(0 + "%");
+			    $('#blurVal').html(0 + "px");
+			} 
 			$("#image").css("filter", filter);
+			updateFilter();
+		}
+
+		function updateFilter() {
+			var filter = "saturate(" + document.getElementById("saturate").value + "%)" +
+		          " brightness(" + document.getElementById("brightness").value + "%)" + 
+		          " contrast(" + document.getElementById("contrast").value + "%)" +
+		          " invert(" + document.getElementById("invert").value + "%)" +
+		          " hue-rotate(" + document.getElementById("hue").value + "deg)" +
+		          " sepia(" + document.getElementById("sepia").value + "%)" +
+		          " grayscale(" + document.getElementById("grayscale").value + "%)" +
+		          " blur(" + document.getElementById("blur").value + "px)";
+			$("#image").css("filter", filter);
+		
+
+			var brightness = document.getElementById("brightness").value + "%";
+				document.getElementById("brightnessVal").innerHTML = brightness;
+			var saturate = document.getElementById("saturate").value + "%";
+				document.getElementById("saturateVal").innerHTML = saturate;
+			var contrast = document.getElementById("contrast").value + "%";
+				document.getElementById("contrastVal").innerHTML = contrast;
+			var blur = document.getElementById("blur").value + "px";
+				document.getElementById("blurVal").innerHTML = blur;	      
+			var sepia = document.getElementById("sepia").value + "%";
+				document.getElementById("sepiaVal").innerHTML = sepia;	      
+			var grayscale = document.getElementById("grayscale").value + "%";
+				document.getElementById("grayscaleVal").innerHTML = grayscale;
+			var invert = document.getElementById("invert").value + "%";
+				document.getElementById("invertVal").innerHTML = invert;
+			var hue = document.getElementById("hue").value + "°";
+				document.getElementById("hueVal").innerHTML = hue;
 
 			$(document).on('input', '#brightness', function() {
 			    $('#brightnessVal').html( $(this).val() + "%");
@@ -1134,43 +1319,10 @@
 			$(document).on('input', '#blur', function() {
 			    $('#blurVal').html( $(this).val() + "px");
 			});
-
-			var brightness = document.getElementById("brightness").value + "%";
-				document.getElementById("brightnessVal").innerHTML = brightness;
-			var saturate = document.getElementById("saturate").value + "%";
-				document.getElementById("saturateVal").innerHTML = saturate;
-			var contrast = document.getElementById("contrast").value + "%";
-				document.getElementById("contrastVal").innerHTML = contrast;
-			var blur = document.getElementById("blur").value + "px";
-				document.getElementById("blurVal").innerHTML = blur;	      
-			var sepia = document.getElementById("sepia").value + "%";
-				document.getElementById("sepiaVal").innerHTML = sepia;	      
-			var grayscale = document.getElementById("grayscale").value + "%";
-				document.getElementById("grayscaleVal").innerHTML = grayscale;
-			var invert = document.getElementById("invert").value + "%";
-				document.getElementById("invertVal").innerHTML = invert;
-			var hue = document.getElementById("hue").value + "°";
-				document.getElementById("hueVal").innerHTML = hue;
-	    }
-
-	    function cancelFilter() {
-	    	if ($(window).innerWidth() < 800) {
-	    		$("#filtersM").css("color", "white");
-				$("#filtersM").css("background", "black");
-			}
-			hideFiltersWrapper();
-	        $("#image").css("filter", "saturate(" + imageData[0].saturate + "%)" +
-	          " brightness(" + imageData[0].brightness + "%)" + 
-	          " contrast(" + imageData[0].contrast + "%)" +
-	          " invert(" + imageData[0].invert + "%)" +
-	          " hue-rotate(" + imageData[0].hue + "deg)" +
-	          " sepia(" + imageData[0].sepia + "%)" +
-	          " grayscale(" + imageData[0].grayscale + "%)" +
-	          " blur(" + imageData[0].blur + "px)");
 	    }
 
 	    function goBack() {
-	    	$("#imageWrapper, #descriptionWrapper, #mobile").hide();
+	    	$("#imageWrapper, #descriptionWrapper, #mobile, #filtersWrapper").hide();
 	    	$("#listWrapper, #header").show();
 	    	$("#listWrapper a").removeClass("active");
 	    	document.getElementById("image").src = "";
@@ -1194,7 +1346,7 @@
 
 
 
-	<div id="mobile"> 	</div>
+	<div id="mobile"> </div>
 
 
 
@@ -1212,10 +1364,17 @@
 	</div>
 
 	 <div id="filtersWrapper"> 
-		<button id='cancelFilter' onclick='cancelFilter()'> Cancel </button>
-		<button id='saveFilter' style="float: right" onclick='saveFilter()'> Save </button>
+		<select id="presets" onchange="preset()">
+			<option value="none"> none </option>
+			<option value="A"> Filter A </option>
+			<option value="B"> Filter B </option>
+			<option value="C"> Filter C </option>
+		</select>
 
-		<br><br>Brightness <div style='float: right' id="brightnessVal"></div><br>
+		<button id='cancelFilter' onclick='cancelFilter()'> ✖ </button>
+
+		<br><br>
+		<br>Brightness <div style='float: right' id="brightnessVal"></div><br>
 			<input type="range" id="brightness" min="0" max="200" value="100" onchange="updateFilter()"> 
 		<br><br>Contrast <div style='float: right' id="contrastVal"></div><br>
 			<input type="range" id="contrast" min="0" max="200" value="100" onchange="updateFilter()">
@@ -1231,6 +1390,9 @@
 			<input type="range" id="sepia" min="0" max="100" value="0" onchange="updateFilter()">
 		<br><br>Blur <div style='float: right' id="blurVal"></div><br>
 			<input type="range" id="blur" min="0" max="100" value="0" onchange="updateFilter()">
+
+		<br><br>
+		<button id='saveFilter' style="float: right" onclick='saveFilter()'> Save </button>
     </div>
 </body>
 </html>

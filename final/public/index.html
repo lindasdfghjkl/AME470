@@ -441,7 +441,16 @@
 				border: none;
 				font-size: 120%;
 				padding: 7px;
+			}
 
+			#darkroomM2 {
+				position: relative;
+				float: right;
+				background-color: transparent;
+				color: white;
+				border: none;
+				font-size: 120%;
+				padding: 7px;
 			}
 
 			#header {
@@ -835,13 +844,14 @@
 
 			var mobileMU = "";
 			mobileMU += "<div id='topBar' style='position: fixed; width: 100%; height: 36px; left: 0px; right: 100%; top: 0px; background: black; border-bottom: 1px solid white'></div>" +
-				"<div id='bottomBar' style='position: fixed; width: 100%; height: 35px; left: 0px; right: 100%; top: calc(100% - 36px); background: black; border-top: 1px solid white'></div>";
+				"<div id='bottomBar' style='position: fixed; width: 100%; height: 36px; left: 0px; right: 100%; top: calc(100% - 36px); background: black; border-top: 1px solid white'></div>";
 			mobileMU += "<button id='back' onclick='goBack()'> ↩ </button>";
 			mobileMU += "<button id='deleteM' onclick='deleteImage(" + imageData[0].id + ")'> Delete </button>";
 			mobileMU += "<button id='detailsM' onclick='showDetails()'> Details </button>";
 			mobileMU += "<button id='editDetailsM' onclick='showEditWrapper()'> <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </button>";
 			mobileMU += "<button id='filtersM' onclick='showFiltersWrapper()'> <i class='fa fa-sliders' aria-hidden='true'></i> </button>";
 			mobileMU += "<button id='darkroomM' onclick='darkroom()'> <i class='fa fa-crop' aria-hidden='true'></i> </button>";
+			mobileMU += "<button id='darkroomM2' onclick='darkroom()'> <i class='fa fa-repeat' aria-hidden='true'></i> </button>";
 			mobileMU += "<button id='saveAll' onclick='rename(" + imageData[0].id + "), updateTitle(), editDesc(" + imageData[0].id + "), updateDesc(), hideEditWrapper()'> Save </button>";
 			mobileMU += "<button id='closeEditM' onclick='hideEditWrapper()'> Cancel </button>";
 			document.getElementById('mobile').innerHTML = mobileMU;
@@ -869,7 +879,7 @@
 
 		function showEditWrapper(){
 			if ($(window).innerWidth() < 800) {
-				$("#detailsM, #deleteM, #descriptionWrapper, #editDetailsM, #darkroomM, #filtersM, #back, #closeEdit, #renameButton, #editDesc").hide();
+				$("#detailsM, #deleteM, #descriptionWrapper, #editDetailsM, #darkroomM, #darkroomM2, #filtersM, #back, #closeEdit, #renameButton, #editDesc").hide();
 				$("#saveAll, #closeEditM").show();
 				$("#topBar").css("border-bottom", "none");
 			}
